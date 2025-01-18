@@ -1,10 +1,17 @@
+import { Stack } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 const Setting = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Setting</Text>
+     <Stack.Screen 
+      options={{
+        headerTransparent: true,
+        headerTitle: "Cài đặt",
+      }}
+     />
+      <Text style={styles.text}>Setting Page</Text>
     </View>
   );
 };
@@ -19,6 +26,5 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    color: "blue",
   },
 });

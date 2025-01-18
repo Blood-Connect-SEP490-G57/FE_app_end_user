@@ -1,27 +1,17 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Alert
-} from "react-native";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
 import { Stack, useRouter } from "expo-router";
-
 export default function Login() {
   const router = useRouter();
   const [CCCD, setCCCD] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    // Kiểm tra điều kiện đăng nhập, ví dụ như không để trống trường CCCD và password
     if (!CCCD || !password) {
       Alert.alert("Lỗi", "Cần điền cả thông tin Căn cước công dân và mật khẩu");
       return;
     }
-    // Logic xử lý đăng nhập sẽ được thêm vào ở đây
-    router.push("/");
+    router.push("/"); // Navigate to home
   };
 
   return (
@@ -36,7 +26,7 @@ export default function Login() {
       <View style={styles.container}>
         <Text style={styles.title}>Đăng nhập</Text>
 
-        {/* CCCDCCCD Input */}
+        {/* CCCD Input */}
         <Text style={styles.titles}>Nhập CCCD/CMT</Text>
         <TextInput
           style={styles.input}
@@ -55,21 +45,30 @@ export default function Login() {
           onChangeText={setPassword}
           secureTextEntry
         />
-        {/* Remember me */}
-        <View style={{ flexDirection: "row", alignItems: "center" , marginBottom: 20}}>
-          <Text style={{ marginRight: 10 }}>Ghi nhớ tài khoản</Text>
-          <TouchableOpacity>
-            <Text style={{ color: "#3498DB" }}>Quên mật khẩu?</Text>
+
+        {/* Remember me and Forgot Password */}
+        <View style={styles.rememberContainer}>
+          <View style={styles.checkboxContainer}>
+            {/* Add CheckBox here if required */}
+            <Text style={styles.rememberText}>Ghi nhớ tài khoản</Text>
+          </View>
+          <TouchableOpacity onPress={() => router.push("/forgot-password")}>
+            <Text style={styles.forgotPasswordText}>Quên mật khẩu?</Text>
           </TouchableOpacity>
         </View>
+
         {/* Login Button */}
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Đăng nhập</Text>
         </TouchableOpacity>
-        <Text style={{ marginTop: 20 }}>
-          Chưa có tài khoản?
-          <Text style={{ color: "#3498DB" }}> Đăng ký ngay</Text>
-        </Text>
+
+        {/* Register Link */}
+        <View style={styles.registerContainer}>
+          <Text>Chưa có tài khoản? </Text>
+          <TouchableOpacity onPress={() => router.push("/register")}>
+            <Text style={styles.registerText}>Đăng ký ngay</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </>
   );
@@ -113,7 +112,33 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
     color: "#000",
-    textAlign: "left",  // Add this to left-align the text
-    width: "100%",  // Ensures the label uses the full width of the container
+    textAlign: "left", // Left-align the labels
+    width: "100%", // Ensures labels take up full width
+  },
+  rememberContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  rememberText: {
+    fontSize: 16,
+    marginLeft: 10, // Space between checkbox and text
+  },
+  forgotPasswordText: {
+    color: "#3498DB",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginLeft: 10, // Add some space between text and link
+  },
+  registerContainer: {
+    flexDirection: "row",
+    marginTop: 20,
+  },
+  registerText: {
+    color: "#3498DB",
   },
 });
