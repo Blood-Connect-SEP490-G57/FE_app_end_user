@@ -1,21 +1,26 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Stack } from "expo-router";
 
 export default function ForgotPassword() {
-    return (
-        <View style={styles.container}>
-        <Text style={styles.text}>Forgot Password Page</Text>
-        </View>
-    );
-    }
+  return (
+    <>
+      <Stack.Screen
+        options={{
+          headerTransparent: true,
+          headerTitle: "Quên mật khẩu",
+          headerTitleAlign: "center",
+        }}
+      />
+      <View>
+        
+      </View>
+    </>
+  );
+}
 
-const styles = StyleSheet.create({      
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    text: {
-        fontSize: 20,
-    },
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 20,
+  },
 });

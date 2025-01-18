@@ -13,7 +13,7 @@ const HomePage = () => {
       <Stack.Screen
         options={{
           headerStyle: {
-            // backgroundColor: "transparent",
+            backgroundColor: "transparent",
           },
           headerTransparent: true,
           headerTitle: "",
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#ecf0f1",
   },
   text: {
     fontSize: 20,
