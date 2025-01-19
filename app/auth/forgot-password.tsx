@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function ProfileScreen() {
+export default function Forgot_password() {
   return (
     <View>
-      <Text>profile!</Text>
+      <Text>Forgot_password!</Text>
     </View>
   );
 }

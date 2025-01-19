@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function ProfileScreen() {
+export default function HomeScreen() {
   return (
     <View>
-      <Text>profile!</Text>
+      <Text>Open up App.tsx to start working on your app!</Text>
     </View>
   );
 }

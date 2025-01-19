@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function ProfileScreen() {
+export default function Register() {
   return (
     <View>
-      <Text>profile!</Text>
+      <Text>Register!</Text>
     </View>
   );
 }
