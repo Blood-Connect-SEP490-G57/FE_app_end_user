@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Text } from "@/components/ui/text";
 import { Input, InputField } from "@/components/ui/input";
-import { Button, ButtonText} from "@/components/ui/button";
+import { Button, ButtonText } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import {
@@ -137,7 +137,55 @@ export default function Register() {
             >
               <InputField placeholder="Nhập email" />
             </Input>
+            
+            {/* Phone */}
+            <Text size="sm">Số điện thoại</Text>
+            <Input
+              variant="outline"
+              size="md"
+              className="mb-2"
+              style={{ marginBottom: 10 }}
+            >
+              <InputField placeholder="Nhập số điện thoại" />
+            </Input>
 
+            {/* Cơ quan/ Trường */}
+            <Text size="sm">Cơ quan/ Trường</Text>
+            <Input
+              variant="outline"
+              size="md"
+              className="mb-2"
+              style={{ marginBottom: 10 }}
+            >
+              <InputField placeholder="Nhập cơ quan/ trường" /> 
+            </Input>
+            {/* mã sv / quân nhân  */}
+            <Text size="sm">Mã sinh viên/ quân nhân</Text>
+            <Input
+              variant="outline"
+              size="md"
+              className="mb-2"
+              style={{ marginBottom: 10 }}
+            >
+              <InputField placeholder="Nhập mã sinh viên/ quân nhân" />
+            </Input>
+
+            {/* Nghề nghiệp */}
+            <Text size="sm">Nghề nghiệp</Text>
+            <Input
+              variant="outline"
+              size="md"
+              className="mb-2"
+              style={{ marginBottom: 10 }}
+            >
+              <InputField placeholder="Nhập nghề nghiệp" />
+            </Input>
+
+          </Card>
+          <Card size="lg" variant="outline" className="m-3">
+            <Heading size="md" className="mb-1">
+              Mật khẩu
+            </Heading>
             {/* Password */}
             <Text size="sm">Mật khẩu</Text>
             <Input
@@ -160,11 +208,13 @@ export default function Register() {
               <InputField placeholder="Nhập lại mật khẩu" />
             </Input>
           </Card>
+
           <Button
             size="md"
             variant="solid"
             action="negative"
-            onPress={() => router.push("/account/home")}
+            onPress={() => router.push("/auth/otp")}
+            style={{ marginBottom: 10 }}
           >
             <ButtonText>Đăng ký</ButtonText>
           </Button>
