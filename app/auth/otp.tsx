@@ -46,6 +46,7 @@ export default function OTP() {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
+            marginTop: 10,
           }}
         >
           <Text>
