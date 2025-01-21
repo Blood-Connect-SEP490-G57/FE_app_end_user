@@ -32,60 +32,42 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { useRouter } from "expo-router";
+
 export default function Register() {
   const router = useRouter();
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <KeyboardAvoidingView behavior="padding" style={{ padding: 10 }}>
-          <Text
-            size="xl"
-            bold
-            style={{ textAlign: "center", marginBottom: 10 }}
-          >
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollView}>
+        <KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoidingView}>
+          <Text size="xl" bold style={styles.headerText}>
             Đăng ký
           </Text>
-          <Card size="lg" variant="outline" className="m-3">
-            <Heading size="md" className="mb-1">
-              Thông tin cá nhân
-            </Heading>
+
+          {/* Personal Info */}
+          <Card size="lg" variant="outline" style={styles.card}>
+            <Heading size="md" style={styles.sectionHeading}>Thông tin cá nhân</Heading>
+            
             {/* CCCD */}
-            <Text size="sm">Nhập CCCD/CMT</Text>
-            <Input
-              variant="outline"
-              size="md"
-              className="mb-2"
-              style={{ marginBottom: 10 }}
-            >
+            <Text size="sm" style={styles.inputLabel}>Nhập CCCD/CMT</Text>
+            <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập CCCD/CMT" />
             </Input>
 
             {/* Full Name */}
-            <Text size="sm">Họ và tên</Text>
-            <Input
-              variant="outline"
-              size="md"
-              className="mb-2"
-              style={{ marginBottom: 10 }}
-            >
+            <Text size="sm" style={styles.inputLabel}>Họ và tên</Text>
+            <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập họ và tên" />
             </Input>
 
-            {/* DOB */}
-            <Text size="sm">Ngày sinh</Text>
-            <Input
-              variant="outline"
-              size="md"
-              className="mb-2"
-              style={{ marginBottom: 10 }}
-            >
+            {/* Date of Birth */}
+            <Text size="sm" style={styles.inputLabel}>Ngày sinh</Text>
+            <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập ngày sinh" />
             </Input>
 
-            {/* Gioi tinh */}
-            <Text size="sm">Giới tính</Text>
-
-            <RadioGroup style={{ flexDirection: "row", marginBottom: 10 }}>
+            {/* Gender */}
+            <Text size="sm" style={styles.inputLabel}>Giới tính</Text>
+            <RadioGroup style={styles.radioGroup}>
               <Radio value="male" size="md">
                 <RadioIndicator>
                   <RadioIcon as={CircleIcon} />
@@ -100,13 +82,12 @@ export default function Register() {
               </Radio>
             </RadioGroup>
 
-            {/* blood type */}
-            <Text size="sm">Nhóm máu</Text>
-
+            {/* Blood Type */}
+            <Text size="sm" style={styles.inputLabel}>Nhóm máu</Text>
             <Select>
-              <SelectTrigger variant="outline" size="lg">
+              <SelectTrigger variant="outline" size="lg" style={styles.selectTrigger}>
                 <SelectInput placeholder="Chọn nhóm máu" />
-                <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                <SelectIcon as={ChevronDownIcon} />
               </SelectTrigger>
               <SelectPortal>
                 <SelectBackdrop />
@@ -123,98 +104,65 @@ export default function Register() {
             </Select>
           </Card>
 
-          <Card size="lg" variant="outline" className="m-3">
-            <Heading size="md" className="mb-1">
-              Thông tin liên hệ
-            </Heading>
+          {/* Contact Info */}
+          <Card size="lg" variant="outline" style={styles.card}>
+            <Heading size="md" style={styles.sectionHeading}>Thông tin liên hệ</Heading>
+
             {/* Email */}
-            <Text size="sm">Email</Text>
-            <Input
-              variant="outline"
-              size="md"
-              className="mb-2"
-              style={{ marginBottom: 10 }}
-            >
+            <Text size="sm" style={styles.inputLabel}>Email</Text>
+            <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập email" />
             </Input>
-            
+
             {/* Phone */}
-            <Text size="sm">Số điện thoại</Text>
-            <Input
-              variant="outline"
-              size="md"
-              className="mb-2"
-              style={{ marginBottom: 10 }}
-            >
+            <Text size="sm" style={styles.inputLabel}>Số điện thoại</Text>
+            <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập số điện thoại" />
             </Input>
 
-            {/* Cơ quan/ Trường */}
-            <Text size="sm">Cơ quan/ Trường</Text>
-            <Input
-              variant="outline"
-              size="md"
-              className="mb-2"
-              style={{ marginBottom: 10 }}
-            >
-              <InputField placeholder="Nhập cơ quan/ trường" /> 
+            {/* Work/School */}
+            <Text size="sm" style={styles.inputLabel}>Cơ quan/ Trường</Text>
+            <Input variant="outline" size="md" style={styles.input}>
+              <InputField placeholder="Nhập cơ quan/ trường" />
             </Input>
-            {/* mã sv / quân nhân  */}
-            <Text size="sm">Mã sinh viên/ quân nhân</Text>
-            <Input
-              variant="outline"
-              size="md"
-              className="mb-2"
-              style={{ marginBottom: 10 }}
-            >
+
+            {/* Student/Military ID */}
+            <Text size="sm" style={styles.inputLabel}>Mã sinh viên/ quân nhân</Text>
+            <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập mã sinh viên/ quân nhân" />
             </Input>
 
-            {/* Nghề nghiệp */}
-            <Text size="sm">Nghề nghiệp</Text>
-            <Input
-              variant="outline"
-              size="md"
-              className="mb-2"
-              style={{ marginBottom: 10 }}
-            >
+            {/* Profession */}
+            <Text size="sm" style={styles.inputLabel}>Nghề nghiệp</Text>
+            <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập nghề nghiệp" />
             </Input>
-
           </Card>
-          <Card size="lg" variant="outline" className="m-3">
-            <Heading size="md" className="mb-1">
-              Mật khẩu
-            </Heading>
+
+          {/* Password Info */}
+          <Card size="lg" variant="outline" style={styles.card}>
+            <Heading size="md" style={styles.sectionHeading}>Mật khẩu</Heading>
+
             {/* Password */}
-            <Text size="sm">Mật khẩu</Text>
-            <Input
-              variant="outline"
-              size="md"
-              className="mb-2"
-              style={{ marginBottom: 10 }}
-            >
+            <Text size="sm" style={styles.inputLabel}>Mật khẩu</Text>
+            <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập mật khẩu" />
             </Input>
 
             {/* Confirm Password */}
-            <Text size="sm">Xác nhận mật khẩu</Text>
-            <Input
-              variant="outline"
-              size="md"
-              className="mb-2"
-              style={{ marginBottom: 10 }}
-            >
+            <Text size="sm" style={styles.inputLabel}>Xác nhận mật khẩu</Text>
+            <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập lại mật khẩu" />
             </Input>
           </Card>
 
+          {/* Submit Button */}
           <Button
             size="md"
             variant="solid"
             action="negative"
             onPress={() => router.push("/auth/otp")}
-            style={{ marginBottom: 10 }}
+            style={styles.submitButton}
           >
             <ButtonText>Đăng ký</ButtonText>
           </Button>
@@ -223,3 +171,44 @@ export default function Register() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 20,
+  },
+  scrollView: {
+    paddingBottom: 20,
+  },
+  keyboardAvoidingView: {
+    paddingHorizontal: 10,
+  },
+  headerText: {
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  card: {
+    marginVertical: 10,
+    paddingHorizontal: 10,
+  },
+  sectionHeading: {
+    marginBottom: 10,
+  },
+  inputLabel: {
+    marginBottom: 5,
+  },
+  input: {
+    marginBottom: 10,
+  },
+  radioGroup: {
+    flexDirection: "row",
+    marginBottom: 10,
+  },
+  selectTrigger: {
+    marginBottom: 10,
+  },
+  submitButton: {
+    marginTop: 20,
+    marginBottom: 10,
+  },
+});
