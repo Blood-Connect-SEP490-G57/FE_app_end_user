@@ -1,63 +1,79 @@
 import { Card } from "@/components/ui/card";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
-import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 export default function SettingScreen() {
+  const router = useRouter();
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.header}>Cài đặt</Text>
+    <SafeAreaView className="flex-1 bg-gray-50 pt-5">
+      <View className="px-4">
+        <Text className="text-xl font-bold text-gray-900 mb-4">Cài đặt</Text>
         
-        <Card style={styles.card}>
-          <Text style={styles.sectionHeader}>Tài khoản</Text>
+        <Card className="bg-white rounded-xl p-4 mb-4">
+          <Text className="text-lg font-semibold text-gray-900 mb-3">Tài khoản</Text>
           
-          <Card style={styles.innerCard}>
+          <Card className="bg-gray-50 rounded-xl p-3">
             {/* Thông tin cá nhân */}
-            <TouchableOpacity style={styles.touchable}>
-              <MaterialCommunityIcons name="account" style={styles.icon} />
-              <Text style={styles.text}>Thông tin cá nhân</Text>
-              <MaterialCommunityIcons name="arrow-right" style={styles.icon} />
+            <TouchableOpacity onPress={() => router.push('/profile')} className="flex-row items-center justify-between py-3 active:bg-gray-100">
+              <View className="flex-row items-center">
+                <MaterialCommunityIcons name="account" size={24} className="text-gray-700 mr-3" />
+                <Text className="text-gray-700">Thông tin cá nhân</Text>
+              </View>
+              <MaterialCommunityIcons name="chevron-right" size={24} className="text-gray-500" />
             </TouchableOpacity>
 
             {/* Lịch sử hiến máu */}
-            <TouchableOpacity style={styles.touchable}>
-              <MaterialCommunityIcons name="history" style={styles.icon} />
-              <Text style={styles.text}>Lịch sử hiến máu</Text>
-              <MaterialCommunityIcons name="arrow-right" style={styles.icon} />
+            <TouchableOpacity onPress={() => router.push('/more/history')} className="flex-row items-center justify-between py-3 active:bg-gray-100">
+              <View className="flex-row items-center">
+                <MaterialCommunityIcons name="history" size={24} className="text-gray-700 mr-3" />
+                <Text className="text-gray-700">Lịch sử hiến máu</Text>
+              </View>
+              <MaterialCommunityIcons name="chevron-right" size={24} className="text-gray-500" />
             </TouchableOpacity>
 
             {/* Lịch hẹn hiến máu */}
-            <TouchableOpacity style={styles.touchable}>
-              <MaterialCommunityIcons name="calendar" style={styles.icon} />
-              <Text style={styles.text}>Lịch hẹn hiến máu</Text>
-              <MaterialCommunityIcons name="arrow-right" style={styles.icon} />
+            <TouchableOpacity onPress={() => router.push('/more/schedule')} className="flex-row items-center justify-between py-3 active:bg-gray-100">
+              <View className="flex-row items-center">
+                <MaterialCommunityIcons name="calendar" size={24} className="text-gray-700 mr-3" />
+                <Text className="text-gray-700">Lịch hẹn hiến máu</Text>
+              </View>
+              <MaterialCommunityIcons name="chevron-right" size={24} className="text-gray-500" />
             </TouchableOpacity>
           </Card>
         </Card>
-        <Card style={styles.card}>
-          <Text style={styles.sectionHeader}>Khác</Text>
+
+        <Card className="bg-white rounded-xl p-4">
+          <Text className="text-lg font-semibold text-gray-900 mb-3">Khác</Text>
           
-          <Card style={styles.innerCard}>
-            {/* Thông tin cá nhân */}
-            <TouchableOpacity style={styles.touchable}>
-              <MaterialCommunityIcons name="star" style={styles.icon} />
-              <Text style={styles.text}>Đánh giá app</Text>
-              <MaterialCommunityIcons name="arrow-right" style={styles.icon} />
+          <Card className="bg-gray-50 rounded-xl p-3">
+            {/* Đánh giá app */}
+            <TouchableOpacity className="flex-row items-center justify-between py-3 active:bg-gray-100">
+              <View className="flex-row items-center">
+                <MaterialCommunityIcons name="star" size={24} className="text-gray-700 mr-3" />
+                <Text className="text-gray-700">Đánh giá app</Text>
+              </View>
+              <MaterialCommunityIcons name="chevron-right" size={24} className="text-gray-500" />
             </TouchableOpacity>
 
-            {/* Lịch sử hiến máu */}
-            <TouchableOpacity style={styles.touchable}>
-              <MaterialCommunityIcons name="history" style={styles.icon} />
-              <Text style={styles.text}>Liên hệ</Text>
-              <MaterialCommunityIcons name="arrow-right" style={styles.icon} />
+            {/* Liên hệ */}
+            <TouchableOpacity onPress={() => router.push('/more/contact')} className="flex-row items-center justify-between py-3 active:bg-gray-100">
+              <View className="flex-row items-center">
+                <MaterialCommunityIcons name="message" size={24} className="text-gray-700 mr-3" />
+                <Text className="text-gray-700">Liên hệ</Text>
+              </View>
+              <MaterialCommunityIcons name="chevron-right" size={24} className="text-gray-500" />
             </TouchableOpacity>
+
             {/* Đăng xuất */}
-            <TouchableOpacity style={styles.touchable}>
-              <MaterialCommunityIcons name="logout" style={styles.icon} />
-              <Text style={styles.text}>Đăng xuất</Text>
-              <MaterialCommunityIcons name="arrow-right" style={styles.icon} />
+            <TouchableOpacity className="flex-row items-center justify-between py-3 active:bg-gray-100">
+              <View className="flex-row items-center">
+                <MaterialCommunityIcons name="logout" size={24} className="text-red-500 mr-3" />
+                <Text className="text-red-500">Đăng xuất</Text>
+              </View>
+              <MaterialCommunityIcons name="chevron-right" size={24} className="text-red-500" />
             </TouchableOpacity>
           </Card>
         </Card>
@@ -65,46 +81,3 @@ export default function SettingScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 20,
-  },
-  content: {
-    padding: 10,
-  },
-  header: {
-    fontWeight: "bold",
-    fontSize: 20,
-    marginBottom: 10,
-  },
-  card: {
-    marginTop: 10,
-    padding: 10,
-  },
-  sectionHeader: {
-    fontWeight: "bold",
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  innerCard: {
-    padding: 10,
-    backgroundColor: "#f9f9f9",
-    borderRadius: 8,
-  },
-  touchable: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingVertical: 10,
-  },
-  icon: {
-    marginRight: 10,
-    color: "#333",
-  },
-  text: {
-    flex: 1,
-    fontSize: 14,
-  },
-});
