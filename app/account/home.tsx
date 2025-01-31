@@ -119,7 +119,9 @@ export default function HomeScreen() {
           action="negative"
           style={styles.registerButton}
         >
-          <ButtonText>Đăng ký ngay</ButtonText>
+          <ButtonText onPress={() => router.push("/registration_form/confirm_location")}>
+            Đăng ký ngay
+          </ButtonText>
         </Button>
       </View>
     </Card>

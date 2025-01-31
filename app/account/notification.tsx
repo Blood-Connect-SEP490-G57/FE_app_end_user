@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity, ScrollView } from "react-native";
 import { Text } from "@/components/ui/text";
+import { router } from "expo-router";
 
 export default function Notification() {
+
   const [activeFilter, setActiveFilter] = useState('all'); // 'all' | 'unread' | 'read'
 
   const NotificationItem = () => (
-    <TouchableOpacity className="bg-white mx-4 my-2 p-4 rounded-xl active:bg-gray-50">
+    <TouchableOpacity className="bg-white mx-4 my-2 p-4 rounded-xl active:bg-gray-50" onPress={() => router.push("/more/notification_detail")}>
       <View className="space-y-2">
         <View className="flex-row items-center justify-between">
           <Text className="text-base font-semibold text-gray-900">
