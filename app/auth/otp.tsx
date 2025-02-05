@@ -15,12 +15,10 @@ export default function OTP() {
     const router = useRouter();
   return (
     <SafeAreaView>
-      <KeyboardAvoidingView behavior="padding" style={{ padding: 10 }}>
+      <KeyboardAvoidingView behavior="padding" style={{ padding: 10, backgroundColor: 'white' }}>
         <StatusBar hidden />
         <View>
-          <Heading size="lg" className="mb-1" style={{ textAlign: "center" }}>
-            Nhập mã xác thực
-          </Heading>
+         
           <Text style={{ textAlign: "center" }}>
             Nhập mã xác thực đã được gửi
           </Text>

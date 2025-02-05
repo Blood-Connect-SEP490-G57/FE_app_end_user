@@ -39,20 +39,10 @@ export default function Register() {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
         <KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoidingView}>
-          <Text size="xl" bold style={styles.headerText}>
-            Đăng ký
-          </Text>
-
           {/* Personal Info */}
-          <Card size="lg" variant="outline" style={styles.card}>
+          <Card size="lg" variant="outline" style={styles.card} className="bg-white">
             <Heading size="md" style={styles.sectionHeading}>Thông tin cá nhân</Heading>
             
-            {/* CCCD */}
-            <Text size="sm" style={styles.inputLabel}>Nhập CCCD/CMT</Text>
-            <Input variant="outline" size="md" style={styles.input}>
-              <InputField placeholder="Nhập CCCD/CMT" />
-            </Input>
-
             {/* Full Name */}
             <Text size="sm" style={styles.inputLabel}>Họ và tên</Text>
             <Input variant="outline" size="md" style={styles.input}>
@@ -83,7 +73,7 @@ export default function Register() {
             </RadioGroup>
 
             {/* Blood Type */}
-            <Text size="sm" style={styles.inputLabel}>Nhóm máu</Text>
+            {/* <Text size="sm" style={styles.inputLabel}>Nhóm máu</Text>
             <Select>
               <SelectTrigger variant="outline" size="lg" style={styles.selectTrigger}>
                 <SelectInput placeholder="Chọn nhóm máu" />
@@ -101,46 +91,16 @@ export default function Register() {
                   <SelectItem label="O" value="O" />
                 </SelectContent>
               </SelectPortal>
-            </Select>
-          </Card>
-
-          {/* Contact Info */}
-          <Card size="lg" variant="outline" style={styles.card}>
-            <Heading size="md" style={styles.sectionHeading}>Thông tin liên hệ</Heading>
-
-            {/* Email */}
-            <Text size="sm" style={styles.inputLabel}>Email</Text>
-            <Input variant="outline" size="md" style={styles.input}>
-              <InputField placeholder="Nhập email" />
-            </Input>
-
-            {/* Phone */}
-            <Text size="sm" style={styles.inputLabel}>Số điện thoại</Text>
+            </Select> */}
+             {/* Phone */}
+             <Text size="sm" style={styles.inputLabel}>Số điện thoại</Text>
             <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập số điện thoại" />
-            </Input>
-
-            {/* Work/School */}
-            <Text size="sm" style={styles.inputLabel}>Cơ quan/ Trường</Text>
-            <Input variant="outline" size="md" style={styles.input}>
-              <InputField placeholder="Nhập cơ quan/ trường" />
-            </Input>
-
-            {/* Student/Military ID */}
-            <Text size="sm" style={styles.inputLabel}>Mã sinh viên/ quân nhân</Text>
-            <Input variant="outline" size="md" style={styles.input}>
-              <InputField placeholder="Nhập mã sinh viên/ quân nhân" />
-            </Input>
-
-            {/* Profession */}
-            <Text size="sm" style={styles.inputLabel}>Nghề nghiệp</Text>
-            <Input variant="outline" size="md" style={styles.input}>
-              <InputField placeholder="Nhập nghề nghiệp" />
             </Input>
           </Card>
 
           {/* Password Info */}
-          <Card size="lg" variant="outline" style={styles.card}>
+          <Card size="lg" variant="outline" style={styles.card} className="bg-white">
             <Heading size="md" style={styles.sectionHeading}>Mật khẩu</Heading>
 
             {/* Password */}

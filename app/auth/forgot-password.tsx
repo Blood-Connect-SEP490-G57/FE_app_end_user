@@ -11,13 +11,10 @@ export default function Forgot_password() {
   return (
     <SafeAreaView>
       <KeyboardAvoidingView behavior="padding" style={{ padding: 10 }}>
-        <View>
-          <Text size="lg" bold style={{ textAlign: "center" }}>Quên mật khẩu</Text>
-          <Text style={{ textAlign: "center" }}>
-            Nhập CCCD và Số điện thoại
+        <Card size="lg" variant="elevated" className="m-3 bg-white">
+          <Text style={{ textAlign: "center" }} className="text-lg mb-4">
+            Nhập CCCD và Số điện thoại để xác minh thông tin tài khoản
           </Text>
-        </View>
-        <Card size="lg" variant="outline" className="m-3">
           <Text>CCCD</Text>
           <Input
             variant="outline"
@@ -36,15 +33,15 @@ export default function Forgot_password() {
           >
             <InputField placeholder="Nhập số điện thoại " />
           </Input>
+          <Button
+            variant="solid"
+            size="md"
+            action="negative"
+            onPress={() => router.push("/auth/otp")}
+          >
+            <ButtonText>Gửi mã OTP</ButtonText>
+          </Button>
         </Card>
-        <Button
-          variant="solid"
-          size="md"
-          action="negative"
-          onPress={() => router.push("/auth/otp")}
-        >
-          <ButtonText>Send OTP</ButtonText>
-        </Button>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
