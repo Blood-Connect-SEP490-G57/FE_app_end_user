@@ -11,30 +11,38 @@ import { Text } from "@/components/ui/text";
 import { Image } from "@/components/ui/image";
 import { Card } from "@/components/ui/card";
 import { Divider } from "@/components/ui/divider";
+import BackButton from "@/components/ui/backbtn";
 
 export default function ProfileScreen() {
-  return (
-    <SafeAreaView className="flex-1 bg-gray-100">
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {/* Profile Picture */}
-        <View style={styles.profileImageContainer} className="mt-4">
-          <Image
-            source={require("@/assets/images/user.png")}
-            alt="user"
-            className="w-24 h-24 rounded-full"
-          />
-        </View>
+  const imageItem = () => {
+    return (
+      <View style={styles.profileImageContainer} className="mt-4">
+        <Image
+          source={require("@/assets/images/user.png")}
+          alt="user"
+          className="w-24 h-24 rounded-full"
+        />
+      </View>
+    );
+  };
 
-        {/* Personal Info Card */}
-        <Card className="p-6 mx-4 mb-6 shadow-lg bg-white rounded-xl">
-          <View className="flex-row items-center justify-between mb-4">
-            <Text className="text-xl font-semibold text-gray-700">Thông tin cá nhân</Text>
+  const InfoItem = () => {
+    return (
+      <View>
+        <Card className="p-6 mx-4 mb-6  bg-white rounded-xl">
+          <View className="flex-row items-center justify-between">
+            <Text className="text-xl font-semibold text-gray-700">
+              Thông tin cá nhân
+            </Text>
+
             <TouchableOpacity>
-              <Text className="text-lg font-medium text-blue-600">Chỉnh sửa</Text>
+              <Text className="text-lg font-medium text-blue-600">
+                Chỉnh sửa
+              </Text>
             </TouchableOpacity>
           </View>
           <Divider />
-          <View style={styles.infoRow}>
+          <View style={styles.infoRow} className="mt-4">
             <Text className="text-lg font-semibold">CCCD:</Text>
             <Text className="text-lg text-gray-500">12654321</Text>
           </View>
@@ -56,13 +64,16 @@ export default function ProfileScreen() {
           </View>
         </Card>
 
-        {/* Contact Info Card */}
-        <Card className="p-6 mx-4 mb-6 shadow-lg bg-white rounded-xl">
-          <Text className="text-xl font-semibold text-gray-700 mb-4">Thông tin liên hệ</Text>
+        <Card className="p-6 mx-4 mb-6 bg-white rounded-xl">
+          <Text className="text-xl font-semibold text-gray-700 ">
+            Thông tin liên hệ
+          </Text>
           <Divider />
-          <View style={styles.infoRow}>
+          <View style={styles.infoRow} className="mt-4">
             <Text className="text-lg font-semibold">Địa chỉ:</Text>
-            <Text className="text-lg text-gray-500">123 Đường ABC, Quận 1, TP.HCM</Text>
+            <Text className="text-lg text-gray-500">
+              123 Đường ABC, Quận 1, TP.HCM
+            </Text>
           </View>
           <View style={styles.infoRow}>
             <Text className="text-lg font-semibold">Email:</Text>
@@ -77,6 +88,23 @@ export default function ProfileScreen() {
             <Text className="text-lg text-gray-500">Công an</Text>
           </View>
         </Card>
+      </View>
+    );
+  };
+
+  return (
+    <SafeAreaView className="flex-1 bg-gray-100">
+      {/* Header với nút Back */}
+      <View className="p-4 flex-row items-center bg-gray-100 ">
+        <BackButton />
+        <Heading className="ml-4 text-lg font-semibold">
+          Thông tin cá nhân
+        </Heading>
+      </View>
+      {/* Nội dung */}
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {imageItem()}
+        {InfoItem()}
       </ScrollView>
     </SafeAreaView>
   );

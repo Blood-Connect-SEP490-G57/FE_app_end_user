@@ -16,13 +16,20 @@ import { Heading } from "@/components/ui/heading";
 import { Card } from "@/components/ui/card";
 import { Text } from "@/components/ui/text";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import BackButton from "@/components/ui/backbtn";
 export default function Standards() {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Heading size="md" className="mb-1 text-center">
-          Câu hỏi thường gặp
-        </Heading>
+        {/* Header với nút Back
+         */}
+        <View className="p-4 flex-row items-center bg-gray-100 ">
+          <BackButton />
+          <Heading className="ml-4 text-lg font-semibold">
+            Câu hỏi thường gặp
+          </Heading>
+        </View>
+
         <Card style={styles.benefitsCard}>
           <Accordion
             size="md"

@@ -17,14 +17,21 @@ import { ChevronDownIcon } from "@/components/ui/icon";
 import React from "react";
 import { Button, ButtonText } from "@/components/ui/button";
 import { router } from "expo-router";
+import { Heading } from "@/components/ui/heading";
+import BackButton from "@/components/ui/backbtn";
 
 export default function ConfirmInfor() {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Text className="text-2xl font-bold text-center">
-          Xác nhận thông tin
-        </Text>
+        {/* Header với nút Back */}
+        <View className="p-4 flex-row items-center bg-gray-100 ">
+          <BackButton />
+          <Heading className="ml-4 text-lg font-semibold">
+            Xác nhận thông tin
+          </Heading>
+        </View>
+       
         <MaterialCommunityIcons
           name="check-circle"
           size={50}
@@ -163,13 +170,17 @@ export default function ConfirmInfor() {
             </AccordionItem>
           </Accordion>
         </Card>
+        <View className="px-4 py-2">
+          <Button
+            className="w-full bg-red-500 h-12"
+            onPress={() => router.push("/account/home")}
+          >
+            <ButtonText>Trở về trang chủ</ButtonText>
+
+
+          </Button>
+        </View>
       </ScrollView>
-      <View className="flex-row items-center justify-center">
-        <Button className="" onPress={() => router.push("/account/home")}>
-          <ButtonText>Trở về trang chủ</ButtonText>
-        </Button>
-      </View>
     </SafeAreaView>
-    
   );
 }

@@ -17,7 +17,7 @@ export default function SettingScreen() {
             Tài khoản
           </Text>
 
-          <Card className="bg-gray-50 rounded-xl p-3">
+          <Card className="bg-white rounded-xl p-3">
             {/* Thông tin cá nhân */}
             <TouchableOpacity
               onPress={() => router.push("/profile")}
@@ -83,7 +83,7 @@ export default function SettingScreen() {
         <Card className="bg-white rounded-xl p-4">
           <Text className="text-lg font-semibold text-gray-900 mb-3">Khác</Text>
 
-          <Card className="bg-gray-50 rounded-xl p-3">
+          <Card className="bg-white rounded-xl p-3">
             {/* Hỗ trợ */}
             <TouchableOpacity
               className="flex-row items-center justify-between py-3 active:bg-gray-100"

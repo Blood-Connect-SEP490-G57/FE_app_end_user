@@ -12,15 +12,22 @@ import { Button, ButtonText } from "@/components/ui/button";
 import React, { useState } from "react";
 import { CheckIcon } from "@/components/ui/icon";
 import { useRouter } from "expo-router";
+import BackButton from "@/components/ui/backbtn";
+import { Heading } from "@/components/ui/heading";
 
 export default function RegistrationForm() {
   const router = useRouter();
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1">
       <ScrollView className="flex-1 px-4 py-6">
-        <Text className="text-center text-2xl font-bold mb-4">
-          Phiếu đăng ký hiến máu
-        </Text>
+        {/* Header với nút Back */}
+        <View className="p-4 flex-row items-center">
+          <BackButton />
+          <Heading className="ml-4 text-lg font-semibold">
+            Phiếu đăng ký hiến máu
+          </Heading>
+        </View>
+
         <Text className="text-sm text-center text-gray-500 mb-4">
           Trả lời các câu hỏi để hoàn thành phiếu đăng ký
         </Text>
@@ -372,20 +379,19 @@ export default function RegistrationForm() {
               </Checkbox>
             </View>
           </Card>
+          <View className="px-4 py-2">
+            <Button
+              size="lg"
+              variant="solid"
+              action="primary"
+              className="w-full bg-red-500"
+              onPress={() => router.push("/registration_form/confirm_infor")}
+            >
+              <ButtonText>Tiếp tục</ButtonText>
+            </Button>
+          </View>
         </View>
       </ScrollView>
-
-      <View className="px-4 py-2 bg-white border-t border-gray-200">
-        <Button
-          size="lg"
-          variant="solid"
-          action="primary"
-          className="w-full"
-          onPress={() => router.push("/registration_form/confirm_infor")}
-        >
-          <ButtonText>Tiếp tục</ButtonText>
-        </Button>
-      </View>
     </SafeAreaView>
   );
 }

@@ -3,13 +3,22 @@ import { Text } from "@/components/ui/text";
 import { Card } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Image } from "@/components/ui/image";
+import BackButton from "@/components/ui/backbtn";
 export default function History() {
   return (
     <SafeAreaView>
       <ScrollView>
+        {/* Header với nút Back */}
+        <View className="p-4 flex-row items-center bg-gray-100 ">
+          <BackButton />
+          <Heading className="ml-4 text-lg font-semibold">
+            Lịch sử hiến máu
+          </Heading>
+        </View>
         <Card size="lg" variant="elevated" className="m-3 mb-4 flex-row">
           <View className="flex-row items-center justify-between mr-4">
             <Image
+
               source={require("@/assets/images/user.png")}
               className="w-20 h-20 rounded-full mx-auto mb-4"
             />
