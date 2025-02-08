@@ -32,31 +32,56 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { useRouter } from "expo-router";
-
+import BackButton from "@/components/ui/backbtn";
 export default function Register() {
   const router = useRouter();
   return (
+
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        <KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoidingView}>
+        {/* Header với nút Back */}
+        <View className="p-4 flex-row items-center bg-gray-100 ">
+          <BackButton />
+          <Heading className="ml-4 text-lg font-semibold">
+            Đăng ký tài khoản
+          </Heading>
+        </View>
+        <KeyboardAvoidingView
+          behavior="padding"
+          style={styles.keyboardAvoidingView}
+
+        >
           {/* Personal Info */}
-          <Card size="lg" variant="outline" style={styles.card} className="bg-white">
-            <Heading size="md" style={styles.sectionHeading}>Thông tin cá nhân</Heading>
-            
+          <Card
+            size="lg"
+            variant="outline"
+            style={styles.card}
+            className="bg-white"
+          >
+            <Heading size="md" style={styles.sectionHeading}>
+              Thông tin cá nhân
+            </Heading>
+
             {/* Full Name */}
-            <Text size="sm" style={styles.inputLabel}>Họ và tên</Text>
+            <Text size="sm" style={styles.inputLabel}>
+              Họ và tên
+            </Text>
             <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập họ và tên" />
             </Input>
 
             {/* Date of Birth */}
-            <Text size="sm" style={styles.inputLabel}>Ngày sinh</Text>
+            <Text size="sm" style={styles.inputLabel}>
+              Ngày sinh
+            </Text>
             <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập ngày sinh" />
             </Input>
 
             {/* Gender */}
-            <Text size="sm" style={styles.inputLabel}>Giới tính</Text>
+            <Text size="sm" style={styles.inputLabel}>
+              Giới tính
+            </Text>
             <RadioGroup style={styles.radioGroup}>
               <Radio value="male" size="md">
                 <RadioIndicator>
@@ -92,25 +117,38 @@ export default function Register() {
                 </SelectContent>
               </SelectPortal>
             </Select> */}
-             {/* Phone */}
-             <Text size="sm" style={styles.inputLabel}>Số điện thoại</Text>
+            {/* Phone */}
+            <Text size="sm" style={styles.inputLabel}>
+              Số điện thoại
+            </Text>
             <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập số điện thoại" />
             </Input>
           </Card>
 
           {/* Password Info */}
-          <Card size="lg" variant="outline" style={styles.card} className="bg-white">
-            <Heading size="md" style={styles.sectionHeading}>Mật khẩu</Heading>
+          <Card
+            size="lg"
+            variant="outline"
+            style={styles.card}
+            className="bg-white"
+          >
+            <Heading size="md" style={styles.sectionHeading}>
+              Mật khẩu
+            </Heading>
 
             {/* Password */}
-            <Text size="sm" style={styles.inputLabel}>Mật khẩu</Text>
+            <Text size="sm" style={styles.inputLabel}>
+              Mật khẩu
+            </Text>
             <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập mật khẩu" />
             </Input>
 
             {/* Confirm Password */}
-            <Text size="sm" style={styles.inputLabel}>Xác nhận mật khẩu</Text>
+            <Text size="sm" style={styles.inputLabel}>
+              Xác nhận mật khẩu
+            </Text>
             <Input variant="outline" size="md" style={styles.input}>
               <InputField placeholder="Nhập lại mật khẩu" />
             </Input>

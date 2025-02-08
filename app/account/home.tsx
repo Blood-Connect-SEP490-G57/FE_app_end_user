@@ -150,8 +150,8 @@ export default function HomeScreen() {
             keyExtractor={(item) => item.id}
             horizontal
             showsHorizontalScrollIndicator={false}
-            snapToAlignment="center" 
-            snapToInterval={320 + 16} 
+            snapToAlignment="center"
+            snapToInterval={320 + 16}
             decelerationRate="fast"
             onMomentumScrollEnd={(event) => {
               const newIndex = Math.round(
@@ -161,7 +161,7 @@ export default function HomeScreen() {
             }}
           />
 
-          <View className="flex-row justify-center items-center space-x-2">
+          <View className="flex-row justify-center items-center space-x-2 mt-2">
             {upcomingEvents.map((_, index) => (
               <View
                 key={index}
@@ -172,7 +172,7 @@ export default function HomeScreen() {
             ))}
           </View>
 
-          <Text className="text-xl font-bold text-gray-900">
+          <Text className="text-xl font-bold text-gray-900 mb-2 mt-2">
             Quyền lợi của người hiến máu
           </Text>
 
@@ -183,7 +183,7 @@ export default function HomeScreen() {
               type="single"
               isCollapsible={true}
               isDisabled={false}
-              className="w-full"
+              className="w-full "
             >
               <AccordionItem value="a">
                 <AccordionHeader>
@@ -194,7 +194,8 @@ export default function HomeScreen() {
                           <MaterialCommunityIcons
                             name="gift-outline"
                             size={24}
-                            color="#666"
+                            color="red"
+                            className="mr-2"
                           />
                           <AccordionTitleText>
                             Bồi dưỡng trực tiếp
@@ -236,7 +237,8 @@ export default function HomeScreen() {
                             <MaterialCommunityIcons
                               name="certificate-outline"
                               size={24}
-                              color="#666"
+                              color="red"
+                              className="mr-2"
                             />
                             <AccordionTitleText>
                               Được cấp giấy chứng nhận
@@ -268,7 +270,8 @@ export default function HomeScreen() {
                             <MaterialCommunityIcons
                               name="heart"
                               size={24}
-                              color="#666"
+                              color="red"
+                              className="mr-2"
                             />
                             <AccordionTitleText>
                               Tư vấn sức khỏe
@@ -293,19 +296,20 @@ export default function HomeScreen() {
             </Accordion>
           </Card>
 
-          <Text className="text-xl font-bold text-gray-900">
+          <Text className="text-xl font-bold text-gray-900 mb-2 mt-2">
             Hướng dẫn & Tiêu chuẩn
           </Text>
 
           <View className="flex-row space-x-3">
             <TouchableOpacity
-              className="flex-1 bg-white p-4 rounded-xl items-center space-y-2"
+              className="flex-1 bg-white p-4 rounded-xl items-center space-y-2 mr-2"
               onPress={() => router.push("/more/advice")}
             >
               <MaterialCommunityIcons
+
                 name="clipboard-list-outline"
                 size={24}
-                color="#666"
+                color="red"
               />
               <Text className="text-gray-600 text-center">
                 Lời khuyên trước và sau hiến máu
@@ -319,7 +323,7 @@ export default function HomeScreen() {
               <MaterialCommunityIcons
                 name="checkbox-marked-circle-outline"
                 size={24}
-                color="#666"
+                color="red"
               />
               <Text className="text-gray-600 text-center">
                 Tiêu chuẩn tham gia

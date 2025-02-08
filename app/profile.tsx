@@ -12,8 +12,10 @@ import { Image } from "@/components/ui/image";
 import { Card } from "@/components/ui/card";
 import { Divider } from "@/components/ui/divider";
 import BackButton from "@/components/ui/backbtn";
+import { useRouter } from "expo-router";
 
 export default function ProfileScreen() {
+  const router = useRouter();
   const imageItem = () => {
     return (
       <View style={styles.profileImageContainer} className="mt-4">
@@ -34,12 +36,12 @@ export default function ProfileScreen() {
             <Text className="text-xl font-semibold text-gray-700">
               Thông tin cá nhân
             </Text>
-
             <TouchableOpacity>
               <Text className="text-lg font-medium text-blue-600">
                 Chỉnh sửa
               </Text>
             </TouchableOpacity>
+
           </View>
           <Divider />
           <View style={styles.infoRow} className="mt-4">

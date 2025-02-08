@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { View, TouchableOpacity, ScrollView, SafeAreaView } from "react-native";
 import { Text } from "@/components/ui/text";
 import { router } from "expo-router";
-import BackButton from "@/components/ui/backbtn";
-import { Heading } from "@/components/ui/heading";
 export default function Notification() {
   const [activeFilter, setActiveFilter] = useState("all"); // 'all' | 'unread' | 'read'
-
 
   const NotificationItem = () => (
     <TouchableOpacity
@@ -22,7 +19,6 @@ export default function Notification() {
         </View>
         <Text className="text-sm text-gray-600 leading-5">
           Bạn có một thông báo mới từ hệ thống
-
         </Text>
         <Text className="text-xs text-red-500">2 giờ trước</Text>
       </View>
@@ -33,7 +29,7 @@ export default function Notification() {
     <SafeAreaView className="flex-1">
       <ScrollView>
         {/* Filter Section */}
-        <View className="py-3 bg-white">
+        <View>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -42,7 +38,7 @@ export default function Notification() {
           >
             <TouchableOpacity
               className={`py-2 px-6 mt-6 mr-3 rounded-full ${
-                activeFilter === "all" ? "bg-red-500" : "bg-gray-100"
+                activeFilter === "all" ? "bg-red-500" : "bg-white"
               }`}
               onPress={() => setActiveFilter("all")}
             >
@@ -58,11 +54,10 @@ export default function Notification() {
             </TouchableOpacity>
             <TouchableOpacity
               className={`py-2 px-6 mt-6 mr-3 rounded-full ${
-                activeFilter === "unread" ? "bg-red-500" : "bg-gray-100"
+                activeFilter === "unread" ? "bg-red-500" : "bg-white"
               }`}
               onPress={() => setActiveFilter("unread")}
             >
-
               <Text
                 className={`${
                   activeFilter === "unread"
@@ -75,10 +70,9 @@ export default function Notification() {
             </TouchableOpacity>
             <TouchableOpacity
               className={`py-2 px-6 mt-6 mr-3 rounded-full ${
-                activeFilter === "read" ? "bg-red-500" : "bg-gray-100"
+                activeFilter === "read" ? "bg-red-500" : "bg-white"
               }`}
               onPress={() => setActiveFilter("read")}
-
             >
               <Text
                 className={`${
@@ -87,7 +81,23 @@ export default function Notification() {
                     : "text-gray-600"
                 }`}
               >
-                Đã đọc
+                Nhắc nhở
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className={`py-2 px-6 mt-6 mr-3 rounded-full ${
+                activeFilter === "event" ? "bg-red-500" : "bg-white"
+              }`}
+              onPress={() => setActiveFilter("event")}
+            >
+              <Text
+                className={`${
+                  activeFilter === "event"
+                    ? "text-white font-medium"
+                    : "text-gray-600"
+                }`}
+              >
+                Sự kiện
               </Text>
             </TouchableOpacity>
           </ScrollView>

@@ -125,10 +125,14 @@ export default function SettingScreen() {
             </TouchableOpacity>
 
             {/* Đăng xuất */}
-            <TouchableOpacity className="flex-row items-center justify-between py-3 active:bg-gray-100">
+            <TouchableOpacity
+              className="flex-row items-center justify-between py-3 active:bg-gray-100"
+              onPress={() => router.push("/")}
+            >
               <View className="flex-row items-center">
                 <MaterialCommunityIcons
                   name="logout"
+
                   size={24}
                   className="text-red-500 mr-3"
                 />

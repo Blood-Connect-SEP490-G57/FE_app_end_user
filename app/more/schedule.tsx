@@ -21,6 +21,7 @@ export default function Schedule() {
             <Image
               source={require("@/assets/images/user.png")}
               className="w-20 h-20 rounded-full mx-auto mb-4"
+              alt="user"
             />
           </View>
           <View>
