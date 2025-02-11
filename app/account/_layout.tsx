@@ -1,14 +1,24 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Image } from "react-native";
 
 export default function AccountLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarStyle: styles.tabBar,
+        tabBarStyle: {
+          ...styles.tabBar,
+          elevation: 0,
+          borderTopWidth: 0,
+          shadowOffset: {
+            width: 0,
+            height: -2,
+          },
+          shadowOpacity: 0.1,
+          shadowRadius: 3,
+          shadowColor: '#000',
+        },
         tabBarActiveTintColor: "#FF6347",
       }}
     >
@@ -61,8 +71,8 @@ export default function AccountLayout() {
 const styles = StyleSheet.create({
   tabBar: {
     height: 60,
-    backgroundColor: "white",
     borderTopWidth: 1,
+    backgroundColor: "white",
     borderTopColor: "#ddd",
   },
 });

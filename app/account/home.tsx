@@ -5,6 +5,9 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions,
+  ImageBackground,
+  Image,
+  StatusBar,
 } from "react-native";
 import { Text } from "@/components/ui/text";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -22,6 +25,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@/components/ui/icon";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Divider } from "@/components/ui/divider";
+import { Heading } from "@/components/ui/heading";
 const { width } = Dimensions.get("window");
 const CARD_WIDTH = width - 32;
 
@@ -62,7 +66,7 @@ export default function HomeScreen() {
   ];
 
   const renderEventCard = ({ item }: { item: any }) => (
-    <Card className="bg-white  mx-2 rounded-xl w-[320px]">
+    <Card className="bg-gray-100 mx-2 rounded-xl w-[320px]">
       <Text className="text-lg font-semibold text-gray-900 mb-3 font-bold">
         Hiến máu - {item.date}
       </Text>
@@ -137,10 +141,60 @@ export default function HomeScreen() {
     </Card>
   );
 
+  const QuickStats = () => {
+    return (
+      <View className="flex-col items-center justify-between space-x-4 mb-2">
+        <View className="flex-row items-center justify-between space-x-4">
+          <Card className="flex-1 bg-red-500 rounded-xl ml-2 mr-2">
+            <Text className="text-white font-bold text-center">
+              Lịch sử hiến máu
+            </Text>
+          </Card>
+          <Card className="flex-1 bg-red-500 rounded-xl mr-2 ml-2">
+            <Text className="text-white font-bold text-center">
+              Lịch sử hiến máu
+            </Text>
+          </Card>
+        </View>
+        <View className="flex-row items-center justify-between space-x-4 mt-2">
+          <Card className="flex-1 bg-red-500 rounded-xl mr-2 ml-2">
+            <Text className="text-white font-bold text-center">
+              Lịch sử hiến máu
+            </Text>
+          </Card>
+          <Card className="flex-1 bg-red-500 rounded-xl mr-2 ml-2">
+            <Text className="text-white font-bold text-center">
+              Lịch sử hiến máu
+            </Text>
+          </Card>
+        </View>
+      </View>
+    );
+  };
+
   return (
-    <SafeAreaView className="flex-1">
-      <ScrollView className="flex-1">
-        <View className="p-4 space-y-6">
+    <SafeAreaView className="flex-1 bg-white">
+      <StatusBar/>
+      <ImageBackground
+        source={require("@/assets/images/background/bg.jpg")}
+        className="absolute inset-0 w-full h-full"
+      />
+      <ScrollView className="flex-1 border-radius-xl">
+        <View className="p-4">
+          <View className="p-4">
+            <View className="flex-row items-center justify-start">
+              <Image
+                source={require("@/assets/images/user.png")}
+                className="w-10 h-10 rounded-full"
+              />
+              <Heading className="font-bold text-white ml-2">
+                Giọt máu hi vọng
+              </Heading>
+            </View>
+          </View>
+        </View>
+        <View className="p-4 space-y-6 bg-white rounded-t-xl">
+          <QuickStats />
           <Text className="text-xl font-bold text-gray-900 mb-2">
             Lịch hiến máu gần nhất
           </Text>
@@ -306,7 +360,6 @@ export default function HomeScreen() {
               onPress={() => router.push("/more/advice")}
             >
               <MaterialCommunityIcons
-
                 name="clipboard-list-outline"
                 size={24}
                 color="red"
