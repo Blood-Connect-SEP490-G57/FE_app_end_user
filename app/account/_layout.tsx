@@ -71,7 +71,6 @@ export default function AccountLayout() {
 const styles = StyleSheet.create({
   tabBar: {
     height: 60,
-    borderTopWidth: 1,
     backgroundColor: "white",
     borderTopColor: "#ddd",
   },

@@ -3,12 +3,10 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   ScrollView,
+  ImageBackground,
 } from "react-native";
 import { Text } from "@/components/ui/text";
-import {
-  Button,
-  ButtonText,
-} from "@/components/ui/button";
+import { Button, ButtonText } from "@/components/ui/button";
 import { Input, InputField } from "@/components/ui/input";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -19,17 +17,20 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView>
+      <ImageBackground
+        source={require("@/assets/images/background/bg.jpg")}
+        className="absolute inset-0 w-full h-full"
+      />
       <KeyboardAvoidingView behavior="padding" style={{ padding: 20 }}>
         <ScrollView>
-          <Image 
-            source={require("@/assets/images/user.png")} 
+          <Image
+            source={require("@/assets/images/user.png")}
             alt="logo"
-            className="self-center w-32 h-32 mb-6" 
+            className="self-center w-32 h-32 mb-6"
           />
           <Card className="p-4">
             <Text
               size="xl"
-
               bold
               style={{ textAlign: "center", marginBottom: 20 }}
             >
@@ -98,13 +99,9 @@ export default function LoginScreen() {
             </View>
 
             <View className="flex-row justify-center mt-9">
-              <Text>
-                Phiên bản thử nghiệm 1.0.0
-              </Text>
-
+              <Text>Phiên bản thử nghiệm 1.0.0</Text>
             </View>
           </Card>
-
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
