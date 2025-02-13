@@ -26,8 +26,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Divider } from "@/components/ui/divider";
 import { Heading } from "@/components/ui/heading";
-const { width } = Dimensions.get("window");
-const CARD_WIDTH = width - 32;
 
 export default function HomeScreen() {
   const [activeIndex, setActiveIndex] = React.useState(0);
@@ -143,30 +141,31 @@ export default function HomeScreen() {
 
   const QuickStats = () => {
     return (
-      <View className="flex-col items-center justify-between space-x-4 mb-2">
+      <View className="flex-col justify-between space-x-4 mb-2">
+        <Text className="text-xl font-bold text-gray-900 mb-2 mt-2">
+          Truy cập nhanh
+        </Text>
         <View className="flex-row items-center justify-between space-x-4">
-          <Card className="flex-1 bg-red-500 rounded-xl ml-2 mr-2">
-            <Text className="text-white font-bold text-center">
-              Lịch sử hiến máu
-            </Text>
-          </Card>
-          <Card className="flex-1 bg-red-500 rounded-xl mr-2 ml-2">
-            <Text className="text-white font-bold text-center">
-              Lịch sử hiến máu
-            </Text>
-          </Card>
-        </View>
-        <View className="flex-row items-center justify-between space-x-4 mt-2">
-          <Card className="flex-1 bg-red-500 rounded-xl mr-2 ml-2">
-            <Text className="text-white font-bold text-center">
-              Lịch sử hiến máu
-            </Text>
-          </Card>
-          <Card className="flex-1 bg-red-500 rounded-xl mr-2 ml-2">
-            <Text className="text-white font-bold text-center">
-              Lịch sử hiến máu
-            </Text>
-          </Card>
+          <TouchableOpacity
+            onPress={() => router.push("/more/history")}
+            className="flex-1 bg-red-500 rounded-xl ml-2 mr-2"
+          >
+            <Card className="flex-1 bg-red-500 rounded-xl">
+              <Text className="text-white font-bold text-center">
+                Lịch sử hiến máu
+              </Text>
+            </Card>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => router.push("/more/history")}
+            className="flex-1 bg-red-500 rounded-xl ml-2 mr-2"
+          >
+            <Card className="flex-1 bg-red-500 rounded-xl">
+              <Text className="text-white font-bold text-center">
+                Lịch sử hiến máu
+              </Text>
+            </Card>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -174,7 +173,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <StatusBar/>
+      {/* <StatusBar /> */}
       <ImageBackground
         source={require("@/assets/images/background/bg.jpg")}
         className="absolute inset-0 w-full h-full"
@@ -195,7 +194,7 @@ export default function HomeScreen() {
         </View>
         <View className="p-4 space-y-6 bg-white rounded-t-xl">
           <QuickStats />
-          <Text className="text-xl font-bold text-gray-900 mb-2">
+          <Text className="text-xl font-bold text-gray-900 mb-2 mt-6">
             Lịch hiến máu gần nhất
           </Text>
           <FlatList
@@ -226,7 +225,7 @@ export default function HomeScreen() {
             ))}
           </View>
 
-          <Text className="text-xl font-bold text-gray-900 mb-2 mt-2">
+          <Text className="text-xl font-bold text-gray-900 mb-2 mt-6">
             Quyền lợi của người hiến máu
           </Text>
 
@@ -237,7 +236,7 @@ export default function HomeScreen() {
               type="single"
               isCollapsible={true}
               isDisabled={false}
-              className="w-full "
+              className="w-full"
             >
               <AccordionItem value="a">
                 <AccordionHeader>
@@ -356,7 +355,7 @@ export default function HomeScreen() {
 
           <View className="flex-row space-x-3">
             <TouchableOpacity
-              className="flex-1 bg-white p-4 rounded-xl items-center space-y-2 mr-2"
+              className="flex-1 bg-gray-100 p-4 rounded-xl items-center space-y-2 mr-2"
               onPress={() => router.push("/more/advice")}
             >
               <MaterialCommunityIcons
@@ -370,7 +369,7 @@ export default function HomeScreen() {
             </TouchableOpacity>
 
             <TouchableOpacity
-              className="flex-1 bg-white p-4 rounded-xl items-center space-y-2"
+              className="flex-1 bg-gray-100 p-4 rounded-xl items-center space-y-2"
               onPress={() => router.push("/more/standards")}
             >
               <MaterialCommunityIcons

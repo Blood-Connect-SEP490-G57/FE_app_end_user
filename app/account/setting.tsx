@@ -8,16 +8,16 @@ import { useRouter } from "expo-router";
 export default function SettingScreen() {
   const router = useRouter();
   return (
-    <SafeAreaView className="flex-1 bg-gray-50 pt-5">
+    <SafeAreaView className="flex-1 bg-white pt-5">
       <View className="px-4">
         <Text className="text-xl font-bold text-gray-900 mb-4">Cài đặt</Text>
 
-        <Card className="bg-white rounded-xl p-4 mb-4">
+        <Card className="bg-gray-100 rounded-xl p-4 mb-4">
           <Text className="text-lg font-semibold text-gray-900 mb-3">
             Tài khoản
           </Text>
 
-          <Card className="bg-white rounded-xl p-3">
+          <Card className="bg-gray-100 rounded-xl p-3">
             {/* Thông tin cá nhân */}
             <TouchableOpacity
               onPress={() => router.push("/profile")}
@@ -80,10 +80,10 @@ export default function SettingScreen() {
           </Card>
         </Card>
 
-        <Card className="bg-white rounded-xl p-4">
+        <Card className="bg-gray-100 rounded-xl p-4">
           <Text className="text-lg font-semibold text-gray-900 mb-3">Khác</Text>
 
-          <Card className="bg-white rounded-xl p-3">
+          <Card className="bg-gray-100 rounded-xl p-3">
             {/* Hỗ trợ */}
             <TouchableOpacity
               className="flex-row items-center justify-between py-3 active:bg-gray-100"

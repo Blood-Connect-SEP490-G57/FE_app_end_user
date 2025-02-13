@@ -8,10 +8,10 @@ import { router } from "expo-router";
 
 export default function NewsScreen() {
   return (
-    <SafeAreaView className="flex-1  ">
+    <SafeAreaView className="flex-1 bg-white">
       <ScrollView className="space-y-4 px-4 py-4">
         {/* News Card 1 */}
-        <Card className="p-4 bg-white rounded-xl mb-4">
+        <Card className="p-4 bg-gray-100 rounded-xl mb-4">
           <TouchableOpacity
             className="space-y-3"
             onPress={() => router.push("/more/news_detail")}

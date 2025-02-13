@@ -28,76 +28,101 @@ export default function ProfileScreen() {
     );
   };
 
+  const PersonalInfoCard = () => {
+    return (
+      <View className="mx-4 mb-6">
+        {/* Banner Header */}
+        <View className="bg-blue-500 p-4 rounded-t-xl flex-row items-center justify-between">
+          <Text className="text-xl font-semibold text-white">
+            Thông tin cá nhân
+          </Text>
+        </View>
+
+        {/* Content Group */}
+        <View className="bg-white rounded-b-xl p-4 shadow-md">
+          <View className="space-y-3">
+            {/* Identity Group */}
+            <View className="mb-4">
+              <Text className="text-sm text-gray-400 mb-2">
+                Thông tin định danh
+              </Text>
+              <View style={styles.infoRow}>
+                <Text className="text-base text-gray-600">CCCD:</Text>
+                <Text className="text-base font-semibold">12654321</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text className="text-base text-gray-600">Họ tên:</Text>
+                <Text className="text-base font-semibold">Nguyễn Văn A</Text>
+              </View>
+            </View>
+
+            {/* Personal Details Group */}
+            <View>
+              <Text className="text-sm text-gray-400 mb-2">
+                Thông tin chi tiết
+              </Text>
+              <View style={styles.infoRow}>
+                <Text className="text-base text-gray-600">Giới tính:</Text>
+                <Text className="text-base font-semibold">Nam</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text className="text-base text-gray-600">Ngày sinh:</Text>
+                <Text className="text-base font-semibold">12/12/2000</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text className="text-base text-gray-600">Nhóm máu:</Text>
+                <Text className="text-base font-semibold">-</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  };
+
   const InfoItem = () => {
     return (
-      <View>
-        <Card className="p-6 mx-4 mb-6  bg-white rounded-xl">
-          <View className="flex-row items-center justify-between">
-            <Text className="text-xl font-semibold text-gray-700">
-              Thông tin cá nhân
-            </Text>
-            <TouchableOpacity>
-              <Text className="text-lg font-medium text-blue-600">
-                Chỉnh sửa
-              </Text>
-            </TouchableOpacity>
-
-          </View>
-          <Divider />
-          <View style={styles.infoRow} className="mt-4">
-            <Text className="text-lg font-semibold">CCCD:</Text>
-            <Text className="text-lg text-gray-500">12654321</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Text className="text-lg font-semibold">Họ tên:</Text>
-            <Text className="text-lg text-gray-500">Nguyễn Văn A</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Text className="text-lg font-semibold">Giới tính:</Text>
-            <Text className="text-lg text-gray-500">Nam</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Text className="text-lg font-semibold">Ngày sinh:</Text>
-            <Text className="text-lg text-gray-500">12/12/2000</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Text className="text-lg font-semibold">Nhóm máu:</Text>
-            <Text className="text-lg text-gray-500">-</Text>
-          </View>
-        </Card>
-
-        <Card className="p-6 mx-4 mb-6 bg-white rounded-xl">
-          <Text className="text-xl font-semibold text-gray-700 ">
+      <View className="mx-4 mb-6">
+        {/* Banner Header */}
+        <View className="bg-blue-500 p-4 rounded-t-xl flex-row items-center justify-between">
+          <Text className="text-xl font-semibold text-white">
             Thông tin liên hệ
           </Text>
-          <Divider />
-          <View style={styles.infoRow} className="mt-4">
-            <Text className="text-lg font-semibold">Địa chỉ:</Text>
-            <Text className="text-lg text-gray-500">
-              123 Đường ABC, Quận 1, TP.HCM
-            </Text>
+        </View>
+
+        {/* Content Group */}
+        <View className="bg-white rounded-b-xl p-4 shadow-md">
+          <View className="space-y-3">
+            <View style={styles.infoRow}>
+              <Text className="text-base text-gray-600">Địa chỉ:</Text>
+              <Text className="text-base font-semibold">
+                123 Đường ABC, Quận 1, TP.HCM
+              </Text>
+            </View>
+            <View style={styles.infoRow}>
+              <Text className="text-base text-gray-600">Email:</Text>
+              <Text className="text-base font-semibold">
+                nguyenvana@gmail.com
+              </Text>
+            </View>
+            <View style={styles.infoRow}>
+              <Text className="text-base text-gray-600">Số điện thoại:</Text>
+              <Text className="text-base font-semibold">0987654321</Text>
+            </View>
+            <View style={styles.infoRow}>
+              <Text className="text-base text-gray-600">Nghề nghiệp:</Text>
+              <Text className="text-base font-semibold">Công an</Text>
+            </View>
           </View>
-          <View style={styles.infoRow}>
-            <Text className="text-lg font-semibold">Email:</Text>
-            <Text className="text-lg text-gray-500">nguyenvana@gmail.com</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Text className="text-lg font-semibold">Số điện thoại:</Text>
-            <Text className="text-lg text-gray-500">0987654321</Text>
-          </View>
-          <View style={styles.infoRow}>
-            <Text className="text-lg font-semibold">Nghề nghiệp:</Text>
-            <Text className="text-lg text-gray-500">Công an</Text>
-          </View>
-        </Card>
+        </View>
       </View>
     );
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-100">
+    <SafeAreaView className="flex-1 bg-white">
       {/* Header với nút Back */}
-      <View className="p-4 flex-row items-center bg-gray-100 ">
+      <View className="p-4 flex-row items-center">
         <BackButton />
         <Heading className="ml-4 text-lg font-semibold">
           Thông tin cá nhân
@@ -106,6 +131,7 @@ export default function ProfileScreen() {
       {/* Nội dung */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {imageItem()}
+        {PersonalInfoCard()}
         {InfoItem()}
       </ScrollView>
     </SafeAreaView>

@@ -12,32 +12,33 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { Card } from "@/components/ui/card";
 import { Image } from "@/components/ui/image";
+import { Heading } from "@/components/ui/heading";
 export default function LoginScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1">
       <ImageBackground
         source={require("@/assets/images/background/bg.jpg")}
         className="absolute inset-0 w-full h-full"
       />
-      <KeyboardAvoidingView behavior="padding" style={{ padding: 20 }}>
-        <ScrollView>
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior="padding"
+        style={{ padding: 20 }}
+      >
+        <View className="flex-1">
           <Image
             source={require("@/assets/images/user.png")}
             alt="logo"
             className="self-center w-32 h-32 mb-6"
           />
           <Card className="p-4">
-            <Text
-              size="xl"
-              bold
-              style={{ textAlign: "center", marginBottom: 20 }}
-            >
+            <Heading size="xl" bold className="text-center mb-4">
               Đăng nhập
-            </Text>
+            </Heading>
             <Text size="md" bold>
-              Nhập CCCD/CMT
+              Số điện thoại
             </Text>
 
             <Input
@@ -46,9 +47,9 @@ export default function LoginScreen() {
               isDisabled={false}
               isInvalid={false}
               isReadOnly={false}
-              style={{ marginBottom: 20 }}
+              className="mb-4"
             >
-              <InputField placeholder="Nhập CCCD/CMT" />
+              <InputField placeholder="Nhập số điện thoại" />
             </Input>
             <Text size="md" bold>
               Mật khẩu
@@ -70,9 +71,7 @@ export default function LoginScreen() {
               style={{ alignSelf: "flex-end" }}
               onPress={() => router.push("/auth/forgot-password")}
             >
-              <ButtonText style={{ fontWeight: "bold" }}>
-                Quên mật khẩu?
-              </ButtonText>
+              <ButtonText className="font-bold">Quên mật khẩu?</ButtonText>
             </Button>
 
             <Button
@@ -83,26 +82,14 @@ export default function LoginScreen() {
             >
               <ButtonText>Đăng nhập</ButtonText>
             </Button>
-            <View
-              style={{
-                flexDirection: "row",
-                marginTop: 4,
-                justifyContent: "center",
-              }}
-            >
+            <View className="flex-row justify-center mt-9">
               <Text>Chưa có tài khoản? </Text>
               <TouchableOpacity onPress={() => router.push("/auth/register")}>
-                <Text style={{ fontWeight: "bold", color: "red" }}>
-                  Đăng ký ngay
-                </Text>
+                <Text className="font-bold text-red-500">Đăng ký ngay</Text>
               </TouchableOpacity>
             </View>
-
-            <View className="flex-row justify-center mt-9">
-              <Text>Phiên bản thử nghiệm 1.0.0</Text>
-            </View>
           </Card>
-        </ScrollView>
+        </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
