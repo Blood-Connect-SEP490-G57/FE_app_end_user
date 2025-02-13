@@ -22,6 +22,9 @@ import {
   ChevronDownIcon,
   CircleIcon,
   CheckCircleIcon,
+  EyeIcon,
+  EyeOffIcon,
+  Icon,
 } from "@/components/ui/icon";
 
 import { useRouter } from "expo-router";
@@ -30,6 +33,8 @@ export default function Register() {
   const router = useRouter();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Password validation functions
   const hasMinLength = (pass: string) => pass.length >= 8;
@@ -72,10 +77,21 @@ export default function Register() {
             <Input variant="outline" size="md" className="mb-2.5">
               <InputField
                 placeholder="Nhập mật khẩu"
-                secureTextEntry
+                secureTextEntry={!showPassword}
                 onChangeText={setPassword}
                 value={password}
               />
+              <Button
+                variant="link"
+                onPress={() => setShowPassword(!showPassword)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              >
+                {showPassword ? (
+                  <Icon as={EyeOffIcon} size="md"/>
+                ) : (
+                  <Icon as={EyeIcon} size="md"/>
+                )}
+              </Button>
             </Input>
 
             {/* Password Requirements */}
@@ -121,10 +137,22 @@ export default function Register() {
             >
               <InputField
                 placeholder="Nhập lại mật khẩu"
-                secureTextEntry
+                secureTextEntry={!showConfirmPassword}
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
               />
+              <Button
+                variant="link"
+                onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                isDisabled={!isPasswordValid(password)}
+              >
+                {showConfirmPassword ? (
+                  <Icon as={EyeOffIcon} size="md"/>
+                ) : (
+                  <Icon as={EyeIcon} size="md"/>
+                )}
+              </Button>
             </Input>
             {/* Submit Button */}
             <Button
