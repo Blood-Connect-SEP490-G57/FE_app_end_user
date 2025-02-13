@@ -2,7 +2,6 @@ import {
   View,
   KeyboardAvoidingView,
   TouchableOpacity,
-  ScrollView,
   ImageBackground,
 } from "react-native";
 import { Text } from "@/components/ui/text";
@@ -13,9 +12,17 @@ import { useRouter } from "expo-router";
 import { Card } from "@/components/ui/card";
 import { Image } from "@/components/ui/image";
 import { Heading } from "@/components/ui/heading";
+import {
+  Checkbox,
+  CheckboxIcon,
+  CheckboxIndicator,
+  CheckboxLabel,
+} from "@/components/ui/checkbox";
+import { useState } from "react";
+import { CheckIcon } from "@/components/ui/icon";
 export default function LoginScreen() {
   const router = useRouter();
-
+  const [rememberPassword, setRememberPassword] = useState(false);
   return (
     <SafeAreaView className="flex-1">
       <ImageBackground
@@ -60,19 +67,34 @@ export default function LoginScreen() {
               isDisabled={false}
               isInvalid={false}
               isReadOnly={false}
+              className="mb-2"
             >
               <InputField placeholder="Nhập mật khẩu" />
             </Input>
-
-            <Button
-              size="sm"
-              variant="link"
-              action="negative"
-              style={{ alignSelf: "flex-end" }}
-              onPress={() => router.push("/auth/forgot-password")}
-            >
-              <ButtonText className="font-bold">Quên mật khẩu?</ButtonText>
-            </Button>
+            <View className="flex-row items-center justify-between mb-4">
+              <View className="flex-row items-center flex-1">
+                <Checkbox
+                  size="md"
+                  isInvalid={false}
+                  isDisabled={false}
+                  value={rememberPassword.toString()}
+                  onChange={setRememberPassword}
+                >
+                  <CheckboxIndicator>
+                    <CheckboxIcon as={CheckIcon}/>
+                  </CheckboxIndicator>
+                  <CheckboxLabel>Ghi nhớ mật khẩu</CheckboxLabel>
+                </Checkbox>
+              </View>
+              <Button
+                size="sm"
+                variant="link"
+                action="negative"
+                onPress={() => router.push("/auth/forgot-password")}
+              >
+                <ButtonText className="font-bold">Quên mật khẩu?</ButtonText>
+              </Button>
+            </View>
 
             <Button
               size="md"

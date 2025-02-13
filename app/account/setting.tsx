@@ -4,6 +4,7 @@ import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
+import { Divider } from "@/components/ui/divider";
 
 export default function SettingScreen() {
   const router = useRouter();
@@ -13,10 +14,10 @@ export default function SettingScreen() {
         <Text className="text-xl font-bold text-gray-900 mb-4">Cài đặt</Text>
 
         <Card className="bg-gray-100 rounded-xl p-4 mb-4">
-          <Text className="text-lg font-semibold text-gray-900 mb-3">
+          <Text className="text-lg font-semibold text-gray-900">
             Tài khoản
           </Text>
-
+          <Divider />
           <Card className="bg-gray-100 rounded-xl p-3">
             {/* Thông tin cá nhân */}
             <TouchableOpacity
@@ -81,8 +82,8 @@ export default function SettingScreen() {
         </Card>
 
         <Card className="bg-gray-100 rounded-xl p-4">
-          <Text className="text-lg font-semibold text-gray-900 mb-3">Khác</Text>
-
+          <Text className="text-lg font-semibold text-gray-900">Khác</Text>
+          <Divider />
           <Card className="bg-gray-100 rounded-xl p-3">
             {/* Hỗ trợ */}
             <TouchableOpacity

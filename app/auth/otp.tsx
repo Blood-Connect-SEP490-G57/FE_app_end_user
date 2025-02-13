@@ -20,7 +20,7 @@ export default function OTP() {
 
       <ScrollView>
         {/* Header với nút Back */}
-        <View className="p-4 flex-row items-center bg-gray-100 ">
+        <View className="p-4 flex-row items-center bg-white ">
           <BackButton />
           <Heading className="ml-4 text-lg font-semibold">
             Nhập mã xác thực
@@ -44,6 +44,7 @@ export default function OTP() {
             numberOfDigits={6}
             onTextChange={(text) => console.log(text)}
             focusColor="red"
+            type="numeric"
             focusStickBlinkingDuration={500}
             theme={{
               pinCodeContainerStyle: {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -18,195 +18,127 @@ import {
   RadioIndicator,
   RadioLabel,
 } from "@/components/ui/radio";
-import { ChevronDownIcon, CircleIcon } from "@/components/ui/icon";
 import {
-  Select,
-  SelectTrigger,
-  SelectInput,
-  SelectIcon,
-  SelectPortal,
-  SelectBackdrop,
-  SelectContent,
-  SelectDragIndicatorWrapper,
-  SelectDragIndicator,
-  SelectItem,
-} from "@/components/ui/select";
+  ChevronDownIcon,
+  CircleIcon,
+  CheckCircleIcon,
+} from "@/components/ui/icon";
+
 import { useRouter } from "expo-router";
 import BackButton from "@/components/ui/backbtn";
 export default function Register() {
   const router = useRouter();
-  return (
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        {/* Header với nút Back */}
-        <View className="p-4 flex-row items-center bg-gray-100 ">
+  // Password validation functions
+  const hasMinLength = (pass: string) => pass.length >= 8;
+  const hasUpperLower = (pass: string) =>
+    /[a-z]/.test(pass) && /[A-Z]/.test(pass);
+  const hasNumberSpecial = (pass: string) =>
+    /[0-9]/.test(pass) && /[!@#$%^&*(),.?":{}|<>]/.test(pass);
+
+  // Add new function to check if password meets all requirements
+  const isPasswordValid = (pass: string) => {
+    return hasMinLength(pass) && hasUpperLower(pass) && hasNumberSpecial(pass);
+  };
+
+  return (
+    <SafeAreaView className="flex-1 bg-white">
+      <ScrollView className="pb-5">
+        <View className="p-4 flex-row items-center bg-white">
           <BackButton />
           <Heading className="ml-4 text-lg font-semibold">
             Đăng ký tài khoản
           </Heading>
         </View>
-        <KeyboardAvoidingView
-          behavior="padding"
-          style={styles.keyboardAvoidingView}
-
-        >
-          {/* Personal Info */}
+        <KeyboardAvoidingView behavior="padding" className="px-2.5">
           <Card
             size="lg"
-            variant="outline"
-            style={styles.card}
-            className="bg-white"
+            variant="elevated"
+            className="bg-white my-2.5 px-2.5 bg-gray-100"
           >
-            <Heading size="md" style={styles.sectionHeading}>
-              Thông tin cá nhân
-            </Heading>
-
-            {/* Full Name */}
-            <Text size="sm" style={styles.inputLabel}>
-              Họ và tên
-            </Text>
-            <Input variant="outline" size="md" style={styles.input}>
-              <InputField placeholder="Nhập họ và tên" />
-            </Input>
-
-            {/* Date of Birth */}
-            <Text size="sm" style={styles.inputLabel}>
-              Ngày sinh
-            </Text>
-            <Input variant="outline" size="md" style={styles.input}>
-              <InputField placeholder="Nhập ngày sinh" />
-            </Input>
-
-            {/* Gender */}
-            <Text size="sm" style={styles.inputLabel}>
-              Giới tính
-            </Text>
-            <RadioGroup style={styles.radioGroup}>
-              <Radio value="male" size="md">
-                <RadioIndicator>
-                  <RadioIcon as={CircleIcon} />
-                </RadioIndicator>
-                <RadioLabel>Nam</RadioLabel>
-              </Radio>
-              <Radio value="female" size="md">
-                <RadioIndicator>
-                  <RadioIcon as={CircleIcon} />
-                </RadioIndicator>
-                <RadioLabel>Nữ</RadioLabel>
-              </Radio>
-            </RadioGroup>
-
-            {/* Blood Type */}
-            {/* <Text size="sm" style={styles.inputLabel}>Nhóm máu</Text>
-            <Select>
-              <SelectTrigger variant="outline" size="lg" style={styles.selectTrigger}>
-                <SelectInput placeholder="Chọn nhóm máu" />
-                <SelectIcon as={ChevronDownIcon} />
-              </SelectTrigger>
-              <SelectPortal>
-                <SelectBackdrop />
-                <SelectContent>
-                  <SelectDragIndicatorWrapper>
-                    <SelectDragIndicator />
-                  </SelectDragIndicatorWrapper>
-                  <SelectItem label="A" value="A" />
-                  <SelectItem label="B" value="B" />
-                  <SelectItem label="AB" value="AB" />
-                  <SelectItem label="O" value="O" />
-                </SelectContent>
-              </SelectPortal>
-            </Select> */}
-            {/* Phone */}
-            <Text size="sm" style={styles.inputLabel}>
+            <Text className="mb-1 font-bold" style={{ fontSize: 16 }}>
               Số điện thoại
             </Text>
-            <Input variant="outline" size="md" style={styles.input}>
+            <Input variant="outline" size="md" className="mb-2.5">
               <InputField placeholder="Nhập số điện thoại" />
             </Input>
-          </Card>
-
-          {/* Password Info */}
-          <Card
-            size="lg"
-            variant="outline"
-            style={styles.card}
-            className="bg-white"
-          >
-            <Heading size="md" style={styles.sectionHeading}>
-              Mật khẩu
-            </Heading>
 
             {/* Password */}
-            <Text size="sm" style={styles.inputLabel}>
+            <Text className="mb-1 font-bold" style={{ fontSize: 16 }}>
               Mật khẩu
             </Text>
-            <Input variant="outline" size="md" style={styles.input}>
-              <InputField placeholder="Nhập mật khẩu" />
+            <Input variant="outline" size="md" className="mb-2.5">
+              <InputField
+                placeholder="Nhập mật khẩu"
+                secureTextEntry
+                onChangeText={setPassword}
+                value={password}
+              />
             </Input>
+
+            {/* Password Requirements */}
+            <View className="mb-2.5 px-2">
+              <Text size="xs" className="text-gray-600">
+                Yêu cầu mật khẩu:
+              </Text>
+              <Text
+                size="xs"
+                className={
+                  hasMinLength(password) ? "text-green-600" : "text-red-600"
+                }
+              >
+                • Ít nhất 8 ký tự
+              </Text>
+              <Text
+                size="xs"
+                className={
+                  hasUpperLower(password) ? "text-green-600" : "text-red-600"
+                }
+              >
+                • Bao gồm chữ hoa và chữ thường
+              </Text>
+              <Text
+                size="xs"
+                className={
+                  hasNumberSpecial(password) ? "text-green-600" : "text-red-600"
+                }
+              >
+                • Bao gồm số và ký tự đặc biệt
+              </Text>
+            </View>
 
             {/* Confirm Password */}
-            <Text size="sm" style={styles.inputLabel}>
+            <Text className="mb-1 font-bold" style={{ fontSize: 16 }}>
               Xác nhận mật khẩu
             </Text>
-            <Input variant="outline" size="md" style={styles.input}>
-              <InputField placeholder="Nhập lại mật khẩu" />
+            <Input
+              variant="outline"
+              size="md"
+              className="mb-2.5 relative"
+              isDisabled={!isPasswordValid(password)}
+            >
+              <InputField
+                placeholder="Nhập lại mật khẩu"
+                secureTextEntry
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+              />
             </Input>
+            {/* Submit Button */}
+            <Button
+              size="md"
+              variant="solid"
+              action="negative"
+              onPress={() => router.push("/auth/otp")}
+              className="mt-5 mb-2.5"
+            >
+              <ButtonText>Đăng ký</ButtonText>
+            </Button>
           </Card>
-
-          {/* Submit Button */}
-          <Button
-            size="md"
-            variant="solid"
-            action="negative"
-            onPress={() => router.push("/auth/otp")}
-            style={styles.submitButton}
-          >
-            <ButtonText>Đăng ký</ButtonText>
-          </Button>
         </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 20,
-  },
-  scrollView: {
-    paddingBottom: 20,
-  },
-  keyboardAvoidingView: {
-    paddingHorizontal: 10,
-  },
-  headerText: {
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  card: {
-    marginVertical: 10,
-    paddingHorizontal: 10,
-  },
-  sectionHeading: {
-    marginBottom: 10,
-  },
-  inputLabel: {
-    marginBottom: 5,
-  },
-  input: {
-    marginBottom: 10,
-  },
-  radioGroup: {
-    flexDirection: "row",
-    marginBottom: 10,
-  },
-  selectTrigger: {
-    marginBottom: 10,
-  },
-  submitButton: {
-    marginTop: 20,
-    marginBottom: 10,
-  },
-});
