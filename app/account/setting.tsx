@@ -5,146 +5,104 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { Divider } from "@/components/ui/divider";
+import { Heading } from "@/components/ui/heading";
+
+// Định nghĩa các menu item
+const ACCOUNT_MENU_ITEMS = [
+  {
+    icon: "account",
+    label: "Thông tin cá nhân",
+    route: "/profile",
+  },
+  {
+    icon: "history",
+    label: "Lịch sử hiến máu",
+    route: "/more/history",
+  },
+  {
+    icon: "calendar",
+    label: "Lịch hẹn hiến máu",
+    route: "/more/schedule",
+  },
+];
+
+const OTHER_MENU_ITEMS = [
+  {
+    icon: "star",
+    label: "Hỗ trợ",
+    route: "/more/support",
+  },
+  {
+    icon: "message",
+    label: "Liên hệ",
+    route: "/more/contact",
+  },
+];
+
+// Component cho một menu item
+const MenuItem = ({ icon, label, route, isLogout = false }: { icon: string, label: string, route: string, isLogout?: boolean }) => {
+  const router = useRouter();
+  const textColor = isLogout ? "text-red-500" : "text-gray-700";
+
+  return (
+    <TouchableOpacity
+      onPress={() => router.push(route as any)}
+      className="flex-row items-center justify-between py-3 active:bg-gray-100"
+    >
+      <View className="flex-row items-center">
+        <MaterialCommunityIcons
+          name={icon as any}
+          size={24}
+          className={`${textColor} mr-3`}
+        />
+        <Text className={textColor}>{label}</Text>
+      </View>
+      <MaterialCommunityIcons
+        name="chevron-right"
+        size={24}
+        className={textColor}
+      />
+    </TouchableOpacity>
+  );
+};
 
 export default function SettingScreen() {
   const router = useRouter();
+  
   return (
-    <SafeAreaView className="flex-1 bg-white pt-5">
+    <SafeAreaView className="flex-1 bg-white">
+      <View className="p-4 flex-row items-center justify-center bg-white">
+        <Heading className="ml-4 text-lg font-semibold">Cài đặt</Heading>
+      </View>
+      
       <View className="px-4">
-        <Text className="text-xl font-bold text-gray-900 mb-4">Cài đặt</Text>
-
+        {/* Account Section */}
         <Card className="bg-gray-100 rounded-xl p-4 mb-4">
-          <Text className="text-lg font-semibold text-gray-900">
-            Tài khoản
-          </Text>
+          <Text className="text-lg font-semibold text-gray-900">Tài khoản</Text>
           <Divider />
           <Card className="bg-gray-100 rounded-xl p-3">
-            {/* Thông tin cá nhân */}
-            <TouchableOpacity
-              onPress={() => router.push("/profile")}
-              className="flex-row items-center justify-between py-3 active:bg-gray-100"
-            >
-              <View className="flex-row items-center">
-                <MaterialCommunityIcons
-                  name="account"
-                  size={24}
-                  className="text-gray-700 mr-3"
-                />
-                <Text className="text-gray-700">Thông tin cá nhân</Text>
-              </View>
-              <MaterialCommunityIcons
-                name="chevron-right"
-                size={24}
-                className="text-gray-500"
-              />
-            </TouchableOpacity>
-
-            {/* Lịch sử hiến máu */}
-            <TouchableOpacity
-              onPress={() => router.push("/more/history")}
-              className="flex-row items-center justify-between py-3 active:bg-gray-100"
-            >
-              <View className="flex-row items-center">
-                <MaterialCommunityIcons
-                  name="history"
-                  size={24}
-                  className="text-gray-700 mr-3"
-                />
-                <Text className="text-gray-700">Lịch sử hiến máu</Text>
-              </View>
-              <MaterialCommunityIcons
-                name="chevron-right"
-                size={24}
-                className="text-gray-500"
-              />
-            </TouchableOpacity>
-
-            {/* Lịch hẹn hiến máu */}
-            <TouchableOpacity
-              onPress={() => router.push("/more/schedule")}
-              className="flex-row items-center justify-between py-3 active:bg-gray-100"
-            >
-              <View className="flex-row items-center">
-                <MaterialCommunityIcons
-                  name="calendar"
-                  size={24}
-                  className="text-gray-700 mr-3"
-                />
-                <Text className="text-gray-700">Lịch hẹn hiến máu</Text>
-              </View>
-              <MaterialCommunityIcons
-                name="chevron-right"
-                size={24}
-                className="text-gray-500"
-              />
-            </TouchableOpacity>
+            {ACCOUNT_MENU_ITEMS.map((item, index) => (
+              <MenuItem key={index} {...item} />
+            ))}
           </Card>
         </Card>
 
+        {/* Other Section */}
         <Card className="bg-gray-100 rounded-xl p-4">
           <Text className="text-lg font-semibold text-gray-900">Khác</Text>
           <Divider />
           <Card className="bg-gray-100 rounded-xl p-3">
-            {/* Hỗ trợ */}
-            <TouchableOpacity
-              className="flex-row items-center justify-between py-3 active:bg-gray-100"
-              onPress={() => router.push("/more/support")}
-            >
-              <View className="flex-row items-center">
-                <MaterialCommunityIcons
-                  name="star"
-                  size={24}
-                  className="text-gray-700 mr-3"
-                />
-                <Text className="text-gray-700">Hỗ trợ</Text>
-              </View>
-              <MaterialCommunityIcons
-                name="chevron-right"
-                size={24}
-                className="text-gray-500"
-              />
-            </TouchableOpacity>
-
-            {/* Liên hệ */}
-            <TouchableOpacity
-              onPress={() => router.push("/more/contact")}
-              className="flex-row items-center justify-between py-3 active:bg-gray-100"
-            >
-              <View className="flex-row items-center">
-                <MaterialCommunityIcons
-                  name="message"
-                  size={24}
-                  className="text-gray-700 mr-3"
-                />
-                <Text className="text-gray-700">Liên hệ</Text>
-              </View>
-              <MaterialCommunityIcons
-                name="chevron-right"
-                size={24}
-                className="text-gray-500"
-              />
-            </TouchableOpacity>
-
-            {/* Đăng xuất */}
-            <TouchableOpacity
-              className="flex-row items-center justify-between py-3 active:bg-gray-100"
-              onPress={() => router.push("/")}
-            >
-              <View className="flex-row items-center">
-                <MaterialCommunityIcons
-                  name="logout"
-
-                  size={24}
-                  className="text-red-500 mr-3"
-                />
-                <Text className="text-red-500">Đăng xuất</Text>
-              </View>
-              <MaterialCommunityIcons
-                name="chevron-right"
-                size={24}
-                className="text-red-500"
-              />
-            </TouchableOpacity>
+            {OTHER_MENU_ITEMS.map((item, index) => (
+              <MenuItem key={index} {...item} />
+            ))}
+            
+            {/* Logout Item */}
+            <MenuItem
+              icon="logout"
+              label="Đăng xuất"
+              route="/"
+              isLogout={true}
+            />
           </Card>
         </Card>
       </View>
