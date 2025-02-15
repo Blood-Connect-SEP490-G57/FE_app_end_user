@@ -43,9 +43,9 @@ const Header = () => (
     <View className="flex-row items-center justify-start">
       <Image
         source={require("@/assets/images/user.png")}
-        className="w-10 h-10 rounded-full"
+        className="w-20 h-20 rounded-full"
       />
-      <Heading className="font-bold text-white ml-2">
+      <Heading className="font-bold text-white ml-2 text-center" size="2xl">
         Giọt máu hi vọng
       </Heading>
     </View>
@@ -150,9 +150,7 @@ const EventCard = ({ item }: { item: Event }) => (
         onPress={() => router.push("/registration_form/confirm_location")}
         className="bg-red-500 py-2 px-4 rounded-full active:bg-red-600"
       >
-        <Text className="text-white text-center font-medium">
-          Đăng ký ngay
-        </Text>
+        <Text className="text-white text-center font-medium">Đăng ký ngay</Text>
       </TouchableOpacity>
     </View>
   </Card>
@@ -180,9 +178,7 @@ const BenefitsAccordion = () => (
                     color="red"
                     className="mr-2"
                   />
-                  <AccordionTitleText>
-                    Bồi dưỡng trực tiếp
-                  </AccordionTitleText>
+                  <AccordionTitleText>Bồi dưỡng trực tiếp</AccordionTitleText>
                 </View>
                 {isExpanded ? (
                   <AccordionIcon as={ChevronUpIcon} />
@@ -256,9 +252,7 @@ const BenefitsAccordion = () => (
                       color="red"
                       className="mr-2"
                     />
-                    <AccordionTitleText>
-                      Tư vấn sức khỏe
-                    </AccordionTitleText>
+                    <AccordionTitleText>Tư vấn sức khỏe</AccordionTitleText>
                   </View>
                   {isExpanded ? (
                     <AccordionIcon as={ChevronUpIcon} />
@@ -305,9 +299,7 @@ const GuidelinesSection = () => (
         size={24}
         color="red"
       />
-      <Text className="text-gray-600 text-center">
-        Tiêu chuẩn tham gia
-      </Text>
+      <Text className="text-gray-600 text-center">Tiêu chuẩn tham gia</Text>
     </TouchableOpacity>
   </View>
 );
@@ -350,59 +342,61 @@ export default function HomeScreen() {
   ];
 
   return (
-    <SafeAreaView className="flex-1 bg-red-500">
-      <ImageBackground
-        source={require("@/assets/images/background/bg.jpg")}
-        className="absolute inset-0 w-full h-full"
-      />
+    <View className="flex-1 bg-white">
       <ScrollView>
-        <Header />
-        <View className="p-4 space-y-6 bg-white rounded-t-xl">
-          <QuickStats />
-          <Text className="text-xl font-bold text-gray-900 mb-2 mt-6">
-            Lịch hiến máu gần nhất
-          </Text>
-          <FlatList
-            data={upcomingEvents}
-            renderItem={({ item }) => <EventCard item={item} />}
-            keyExtractor={(item) => item.id}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            snapToAlignment="center"
-            snapToInterval={336}
-            decelerationRate="fast"
-            onMomentumScrollEnd={(event) => {
-              const newIndex = Math.round(
-                event.nativeEvent.contentOffset.x / 336
-              );
-              if (!isNaN(newIndex)) {
-                setActiveIndex(newIndex);
-              }
-            }}
+        <SafeAreaView className="flex-1 bg-white">
+          <ImageBackground
+            source={require("@/assets/images/background/bg.jpg")}
+            className="absolute inset-0 w-full h-full"
           />
+          <Header />
+          <View className="p-4 space-y-6 bg-white rounded-t-xl">
+            <QuickStats />
+            <Text className="text-xl font-bold text-gray-900 mb-2 mt-6">
+              Lịch hiến máu gần nhất
+            </Text>
+            <FlatList
+              data={upcomingEvents}
+              renderItem={({ item }) => <EventCard item={item} />}
+              keyExtractor={(item) => item.id}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              snapToAlignment="center"
+              snapToInterval={336}
+              decelerationRate="fast"
+              onMomentumScrollEnd={(event) => {
+                const newIndex = Math.round(
+                  event.nativeEvent.contentOffset.x / 336
+                );
+                if (!isNaN(newIndex)) {
+                  setActiveIndex(newIndex);
+                }
+              }}
+            />
 
-          <View className="flex-row justify-center items-center space-x-2 mt-2">
-            {upcomingEvents.map((_, index) => (
-              <View
-                key={index}
-                className={`h-2 rounded-full ${
-                  index === activeIndex ? "w-6 bg-red-500" : "w-2 bg-gray-300"
-                }`}
-              />
-            ))}
+            <View className="flex-row justify-center items-center space-x-2 mt-2">
+              {upcomingEvents.map((_, index) => (
+                <View
+                  key={index}
+                  className={`h-2 rounded-full ${
+                    index === activeIndex ? "w-6 bg-red-500" : "w-2 bg-gray-300"
+                  }`}
+                />
+              ))}
+            </View>
+
+            <Text className="text-xl font-bold text-gray-900 mb-2 mt-6">
+              Quyền lợi của người hiến máu
+            </Text>
+            <BenefitsAccordion />
+
+            <Text className="text-xl font-bold text-gray-900 mb-2 mt-2">
+              Hướng dẫn & Tiêu chuẩn
+            </Text>
+            <GuidelinesSection />
           </View>
-
-          <Text className="text-xl font-bold text-gray-900 mb-2 mt-6">
-            Quyền lợi của người hiến máu
-          </Text>
-          <BenefitsAccordion />
-
-          <Text className="text-xl font-bold text-gray-900 mb-2 mt-2">
-            Hướng dẫn & Tiêu chuẩn
-          </Text>
-          <GuidelinesSection />
-        </View>
+        </SafeAreaView>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }

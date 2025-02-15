@@ -36,7 +36,7 @@ export default function Register() {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <KeyboardDismissWrapper>
-        <ScrollView className="pb-5">
+        <View className="pb-5">
           <View className="p-4 flex-row items-center bg-white">
             <BackButton />
             <Heading className="ml-4 text-lg font-semibold">
@@ -154,7 +154,7 @@ export default function Register() {
               </Button>
             </Card>
           </KeyboardAvoidingView>
-        </ScrollView>
+        </View>
       </KeyboardDismissWrapper>
     </SafeAreaView>
   );

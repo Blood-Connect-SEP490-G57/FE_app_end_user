@@ -13,76 +13,74 @@ import { Button, ButtonText } from "@/components/ui/button";
 import { useRouter } from "expo-router";
 import { OtpInput } from "react-native-otp-entry";
 import BackButton from "@/components/ui/backbtn";
-import { KeyboardDismissWrapper } from "@/components/ui/KeyboardDismissWrapper";
 export default function OTP() {
   const router = useRouter();
   return (
-    <SafeAreaView>
-      <KeyboardDismissWrapper>
-        <ScrollView>
-          {/* Header với nút Back */}
-          <View className="p-4 flex-row items-center bg-white ">
-            <BackButton />
-            <Heading className="ml-4 text-lg font-semibold">
-              Nhập mã xác thực
-            </Heading>
+    <SafeAreaView className="flex-1 bg-white">
+      {/* Header với nút Back */}
+      <View className="p-4 flex-row items-center bg-white ">
+        <BackButton />
+        <Heading className="ml-4 text-lg font-semibold">
+          Nhập mã xác thực
+        </Heading>
+      </View>
+      <View className="pb-5">
+        <KeyboardAvoidingView
+          behavior="padding"
+          style={{ padding: 10, backgroundColor: "white" }}
+        >
+          <StatusBar hidden />
+          <View>
+            <Text className="text-center">
+              Nhập mã xác thực đã được gửi
+            </Text>
+            <Text className="text-center">
+              qua số điện thoại của bạn
+            </Text>
           </View>
-
-          <KeyboardAvoidingView
-            behavior="padding"
-            style={{ padding: 10, backgroundColor: "white" }}
+          <OtpInput
+            numberOfDigits={4}
+            onTextChange={(text) => console.log(text)}
+            focusColor="red"
+            type="numeric"
+            focusStickBlinkingDuration={500}
+            theme={{
+              pinCodeContainerStyle: {
+                backgroundColor: "transparent",
+                width: 65,
+                height: 65,
+                borderRadius: 12,
+                marginTop: 30,
+                borderWidth: 1,
+                borderColor: '#E5E7EB',
+                marginHorizontal: 5,
+              },
+              pinCodeTextStyle: {
+                fontSize: 24,
+                color: '#111827',
+              }
+            }}
+          />
+          <TouchableOpacity
+            className="flex-row items-center justify-center mt-6"
           >
-            <StatusBar hidden />
-            <View>
-              <Text style={{ textAlign: "center" }}>
-                Nhập mã xác thực đã được gửi
-              </Text>
-              <Text style={{ textAlign: "center" }}>
-                qua số điện thoại của bạn
-              </Text>
-            </View>
-            <OtpInput
-              numberOfDigits={6}
-              onTextChange={(text) => console.log(text)}
-              focusColor="red"
-              type="numeric"
-              focusStickBlinkingDuration={500}
-              theme={{
-                pinCodeContainerStyle: {
-                  backgroundColor: "transparent",
-                  width: 50,
-                  height: 50,
-                  borderRadius: 10,
-                  marginTop: 30,
-                },
-              }}
-            />
-            <TouchableOpacity
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>Không nhận được mã xác thực?</Text>
-              <TouchableOpacity>
-                <Text style={{ color: "red" }}>Gửi lại mã</Text>
-              </TouchableOpacity>
+            <Text>Không nhận được mã xác thực ?</Text>
+            <TouchableOpacity>
+              <Text className="text-red-500 font-bold ml-1"> Gửi lại mã</Text>
             </TouchableOpacity>
+          </TouchableOpacity>
 
-            <Button
-              variant="solid"
-              size="md"
-              className="mt-3"
-              action="negative"
-              onPress={() => router.push("/account/home")}
-            >
-              <ButtonText>Xác nhận</ButtonText>
-            </Button>
-          </KeyboardAvoidingView>
-        </ScrollView>
-      </KeyboardDismissWrapper>
+          <Button
+            variant="solid"
+            size="md"
+            className="mt-3"
+            action="negative"
+            onPress={() => router.push("/account/home")}
+          >
+            <ButtonText>Xác nhận</ButtonText>
+          </Button>
+        </KeyboardAvoidingView>
+      </View>
     </SafeAreaView>
   );
 }
