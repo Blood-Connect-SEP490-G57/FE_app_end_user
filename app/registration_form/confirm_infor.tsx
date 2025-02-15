@@ -31,7 +31,7 @@ export default function ConfirmInfor() {
             Xác nhận thông tin
           </Heading>
         </View>
-       
+
         <MaterialCommunityIcons
           name="check-circle"
           size={50}
@@ -176,8 +176,6 @@ export default function ConfirmInfor() {
             onPress={() => router.push("/account/home")}
           >
             <ButtonText>Trở về trang chủ</ButtonText>
-
-
           </Button>
         </View>
       </ScrollView>
