@@ -15,386 +15,129 @@ import { useRouter } from "expo-router";
 import BackButton from "@/components/ui/backbtn";
 import { Heading } from "@/components/ui/heading";
 import { KeyboardDismissWrapper } from "@/components/ui/KeyboardDismissWrapper";
+
+// Component cho banner
+const QuestionBanner = ({ title, description }: { title: string, description: string }) => (
+  <View className="bg-red-500 p-4 rounded-lg mb-4">
+    <Text className="text-white text-lg font-bold">{title}</Text>
+    {description && (
+      <Text className="text-white text-sm mt-1">{description}</Text>
+    )}
+  </View>
+);
+
+// Component cho một group câu hỏi
+const QuestionGroup = ({ question, options }: { question: any, options: any }) => {
+  return (
+    <View className="mx-4 mb-6">
+      {/* Banner Header */}
+      <View className="bg-red-500 p-4 rounded-t-xl flex-row items-center justify-between">
+        <Text className="text-xl font-semibold text-white">
+          Câu {question.id} : {question.question}
+        </Text>
+      </View>
+
+      {/* Content Group */}
+      <View className="bg-white rounded-b-xl p-4 shadow-md">
+        <View className="space-y-3">
+          {options.map((option: any, index: number) => (
+            <View key={index}>
+              <View className={option.hasInput ? "flex-row items-center space-x-2" : ""}>
+                <Checkbox value={option.value}>
+                  <CheckboxIndicator>
+                    <CheckboxIcon as={CheckIcon} />
+                  </CheckboxIndicator>
+                  <CheckboxLabel className="text-base text-gray-700">{option.label}</CheckboxLabel>
+                </Checkbox>
+              </View>
+              {option.hasInput && (
+                <Input variant="outline" size="md" className="mt-2">
+                  <InputField placeholder="Nhập chi tiết..." />
+                </Input>
+              )}
+            </View>
+          ))}
+        </View>
+      </View>
+    </View>
+  );
+};
+
+// Định nghĩa các câu hỏi
+const QUESTIONS = [
+  {
+    id: 1,
+    question: "Anh/chị đã từng hiến máu chưa?",
+    options: [
+      { value: "yes", label: "Có" },
+      { value: "no", label: "Không" },
+    ],
+  },
+  {
+    id: 2,
+    question: "Hiện tại, anh/chị có bị các bệnh: viêm khớp, dạ dày, viêm gan/vàng da, bệnh tim, huyết áp thấp/cao, hen, ho kéo dài, bệnh máu, lao?",
+    options: [
+      { value: "yes", label: "Có" },
+      { value: "no", label: "Không" },
+      { value: "other", label: "Khác", hasInput: true },
+    ],
+  },
+  {
+    id: 3,
+    question: "Trong vòng 12 tháng gần đây, anh/chị có mắc các bệnh và đã được điều trị khỏi",
+    options: [
+      { value: "diseases", label: "Sốt rét, Giang mai, Lao, Viêm não, Phẫu thuật ngoại khoa" },
+      { value: "transfusion", label: "Được truyền máu và các chế phẩm máu" },
+      { value: "vaccine", label: "Tiêm Vacxin bệnh dại" },
+      { value: "no", label: "Không" },
+      { value: "other", label: "Khác", hasInput: true },
+    ],
+  },
+];
+
 export default function RegistrationForm() {
   const router = useRouter();
-  return (
-    <SafeAreaView className="flex-1">
-      <KeyboardDismissWrapper>
-        <ScrollView className="flex-1 px-4 py-6">
-          {/* Header với nút Back */}
-          <View className="p-4 flex-row items-center">
-            <BackButton />
-            <Heading className="ml-4 text-lg font-semibold">
-              Phiếu đăng ký hiến máu
-            </Heading>
-          </View>
 
-          <Text className="text-sm text-center text-gray-500 mb-4">
+  return (
+    <SafeAreaView className="flex-1 bg-white">
+      {/* Header với nút Back */}
+      <View className="p-4 flex-row items-center bg-white">
+        <BackButton />
+        <Heading className="ml-4 text-lg font-semibold">
+          Phiếu đăng ký hiến máu
+        </Heading>
+      </View>
+
+      <ScrollView className="flex-1">
+        {/* Description */}
+        <View className="p-4 bg-white mb-2">
+          <Text className="text-sm text-gray-500">
             Trả lời các câu hỏi để hoàn thành phiếu đăng ký
           </Text>
-          <View className="flex flex-col gap-4">
-            <Card className="p-4">
-              <Text className="text-lg font-bold mb-4">
-                1. Anh/chị đã từng hiến máu chưa?
-              </Text>
-              <View className="space-y-2">
-                <Checkbox value="yes">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Có</CheckboxLabel>
-                </Checkbox>
-                <Checkbox value="no">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Không</CheckboxLabel>
-                </Checkbox>
-              </View>
-            </Card>
+        </View>
 
-            <Card className="p-4">
-              <Text className="text-lg font-bold mb-4">
-                2. Hiện tại, anh/chị có bị các bệnh: viêm khớp, dạ dày, viêm
-                gan/vàng da, bệnh tim, huyết áp thấp/cao, hen, ho kéo dài, bệnh
-                máu, lao?
-              </Text>
-              <View className="space-y-2">
-                <Checkbox value="yes">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Có</CheckboxLabel>
-                </Checkbox>
-                <Checkbox value="no">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Không</CheckboxLabel>
-                </Checkbox>
-                <View className="flex-row items-center space-x-2">
-                  <Checkbox value="other">
-                    <CheckboxIndicator>
-                      <CheckboxIcon as={CheckIcon} />
-                    </CheckboxIndicator>
-                    <CheckboxLabel>Khác</CheckboxLabel>
-                    <Input variant="outline" size="md" className="flex-1 ml-2">
-                      <InputField placeholder="Nhập bệnh khác..." />
-                    </Input>
-                  </Checkbox>
-                </View>
-              </View>
-            </Card>
+        {/* Questions */}
+        {QUESTIONS.map((question) => (
+          <QuestionGroup 
+            key={question.id} 
+            question={question} 
+            options={question.options} 
+          />
+        ))}
 
-            {/* Câu hỏi 3 */}
-            <Card className="p-4">
-              <Text className="text-lg font-bold mb-4">
-                3. Trong vòng 12 tháng gần đây, anh/chị có mắc các bệnh và đã
-                được điều trị khỏi
-              </Text>
-              <View className="space-y-2">
-                <Checkbox value="diseases">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Sốt rét, Giang mai, Lao, Viêm não, Phẫu thuật ngoại khoa
-                  </CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="transfusion">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Được truyền máu và các chế phẩm máu
-                  </CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="vaccine">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Tiêm Vacxin bệnh dại</CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="no">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Không</CheckboxLabel>
-                </Checkbox>
-
-                <View className="flex-row items-center space-x-2">
-                  <Checkbox value="other">
-                    <CheckboxIndicator>
-                      <CheckboxIcon as={CheckIcon} />
-                    </CheckboxIndicator>
-                    <CheckboxLabel>Khác</CheckboxLabel>
-                    <Input variant="outline" size="md" className="flex-1 ml-2">
-                      <InputField placeholder="Nhập chi tiết..." />
-                    </Input>
-                  </Checkbox>
-                </View>
-              </View>
-            </Card>
-            {/* Câu hỏi 4 */}
-            <Card className="p-4">
-              <Text className="text-lg font-bold mb-4">
-                4. Trong vòng 06 tháng gần đây, anh/chị có bị một trong số các
-                triệu chứng sau không?
-              </Text>
-              <View className="space-y-2">
-                <Checkbox value="diseases">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Sút cân nhanh không rõ nguyên nhân?
-                  </CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="transfusion">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Nổi hạch kéo dài?</CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="vaccine">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Chữa răng, châm cứu?</CheckboxLabel>
-                </Checkbox>
-                <Checkbox value="xam">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Xăm mình, xỏ lỗ tai, lỗ mũi.</CheckboxLabel>
-                </Checkbox>
-                <Checkbox value="heroin">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Sử dụng ma tuý?</CheckboxLabel>
-                </Checkbox>
-                <Checkbox value="hiv">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Quan hệ tình dục với người nhiễm HIV hoặc người có hành vi
-                    nguy cơ lây nhiễm HIV
-                  </CheckboxLabel>
-                </Checkbox>
-                <Checkbox value="same_sex">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Quan hệ tình dục với người cùng giới?
-                  </CheckboxLabel>
-                </Checkbox>
-                <Checkbox value="no">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Không</CheckboxLabel>
-                </Checkbox>
-
-                <View className="flex-row items-center space-x-2">
-                  <Checkbox value="other">
-                    <CheckboxIndicator>
-                      <CheckboxIcon as={CheckIcon} />
-                    </CheckboxIndicator>
-                    <CheckboxLabel>Khác</CheckboxLabel>
-                    <Input variant="outline" size="md" className="flex-1 ml-2">
-                      <InputField placeholder="Nhập chi tiết..." />
-                    </Input>
-                  </Checkbox>
-                </View>
-              </View>
-            </Card>
-
-            {/* Câu hỏi 5 */}
-            <Card className="p-4">
-              <Text className="text-lg font-bold mb-4">
-                5. Trong 01 tháng gần đây anh/chị có
-              </Text>
-              <View className="space-y-2">
-                <Checkbox value="diseases">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Khỏi bệnh sau khi mắc bệnh viêm đường tiết niệu, viêm da
-                    nhiễm trùng, viêm phế quản, viêm phổi, sởi, quai bị,
-                    Rubella, Khác
-                  </CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="vaccine">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Tiêm vắc xin phòng bệnh?</CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="epidemic_area">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Đi vào vùng có dịch bệnh lưu hành (sốt rét, sốt xuất huyết,
-                    Zika, ...)
-                  </CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="no">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Không</CheckboxLabel>
-                </Checkbox>
-
-                <View className="flex-row items-center space-x-2">
-                  <Checkbox value="other">
-                    <CheckboxIndicator>
-                      <CheckboxIcon as={CheckIcon} />
-                    </CheckboxIndicator>
-                    <CheckboxLabel>Khác</CheckboxLabel>
-                    <Input variant="outline" size="md" className="flex-1 ml-2">
-                      <InputField placeholder="Nhập chi tiết..." />
-                    </Input>
-                  </Checkbox>
-                </View>
-              </View>
-            </Card>
-
-            {/* Câu hỏi 6 */}
-            <Card className="p-4">
-              <Text className="text-lg font-bold mb-4">
-                6. Trong 07 ngày gần đây anh/chị có
-              </Text>
-              <View className="space-y-2">
-                <Checkbox value="flu">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Bị cảm cúm (ho, nhức đầu, sốt...)?
-                  </CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="medicine">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Dùng thuốc kháng sinh, Aspirin, Corticoid?
-                  </CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="vaccine">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Tiêm Vacxin phòng Viêm gan siêu vi B, Human Papilloma Virus.
-                  </CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="no">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Không</CheckboxLabel>
-                </Checkbox>
-
-                <View className="flex-row items-center space-x-2">
-                  <Checkbox value="other">
-                    <CheckboxIndicator>
-                      <CheckboxIcon as={CheckIcon} />
-                    </CheckboxIndicator>
-                    <CheckboxLabel>Khác</CheckboxLabel>
-                    <Input variant="outline" size="md" className="flex-1 ml-2">
-                      <InputField placeholder="Nhập chi tiết..." />
-                    </Input>
-                  </Checkbox>
-                </View>
-              </View>
-            </Card>
-
-            {/* Câu hỏi 7 */}
-            <Card className="p-4">
-              <Text className="text-lg font-bold mb-4">
-                7. Câu hỏi dành cho phụ nữ
-              </Text>
-              <View className="space-y-2">
-                <Checkbox value="pregnant">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Hiện có thai, hoặc nuôi con dưới 12 tháng tuổi?
-                  </CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="menstruation">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>
-                    Có kinh nguyệt trong vòng một tuần hay không?
-                  </CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="no">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Không</CheckboxLabel>
-                </Checkbox>
-              </View>
-            </Card>
-
-            {/* Câu hỏi 8 */}
-            <Card className="p-4">
-              <Text className="text-lg font-bold mb-4">
-                8. Anh/chị có đồng ý xét nghiệm HIV, nhận thông báo và được tư
-                vấn khi kết quả xét nghiệm HIV nghi ngờ hoặc dương tính?
-              </Text>
-              <View className="space-y-2">
-                <Checkbox value="yes">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Có</CheckboxLabel>
-                </Checkbox>
-
-                <Checkbox value="no">
-                  <CheckboxIndicator>
-                    <CheckboxIcon as={CheckIcon} />
-                  </CheckboxIndicator>
-                  <CheckboxLabel>Không</CheckboxLabel>
-                </Checkbox>
-              </View>
-            </Card>
-            <View className="px-4 py-2">
-              <Button
-                size="lg"
-                variant="solid"
-                action="primary"
-                className="w-full bg-red-500"
-                onPress={() => router.push("/registration_form/confirm_infor")}
-              >
-                <ButtonText>Tiếp tục</ButtonText>
-              </Button>
-            </View>
-          </View>
-        </ScrollView>
-      </KeyboardDismissWrapper>
+        {/* Submit Button */}
+        <View className="mx-4 mb-6">
+          <Button
+            size="lg"
+            variant="solid"
+            action="primary"
+            className="w-full bg-red-500"
+            onPress={() => router.push("/registration_form/confirm_infor")}
+          >
+            <ButtonText>Tiếp tục</ButtonText>
+          </Button>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
