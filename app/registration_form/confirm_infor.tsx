@@ -22,10 +22,10 @@ import BackButton from "@/components/ui/backbtn";
 
 export default function ConfirmInfor() {
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1 bg-white">
       <ScrollView>
         {/* Header với nút Back */}
-        <View className="p-4 flex-row items-center bg-gray-100 ">
+        <View className="p-4 flex-row items-center bg-white ">
           <BackButton />
           <Heading className="ml-4 text-lg font-semibold">
             Xác nhận thông tin
@@ -42,7 +42,7 @@ export default function ConfirmInfor() {
           Bạn đã đăng ký thành công
         </Text>
 
-        <Card className="p-4 mx-4 mb-4">
+        <Card className="p-4 mx-4 mb-4 bg-gray-100">
           <Accordion size="md" variant="unfilled" type="single">
             <AccordionItem value="a">
               <AccordionHeader>
@@ -94,7 +94,7 @@ export default function ConfirmInfor() {
           </Accordion>
         </Card>
 
-        <Card className="p-4 mx-4 mb-4">
+        <Card className="p-4 mx-4 mb-4 bg-gray-100">
           <Accordion size="md" variant="unfilled" type="single">
             <AccordionItem value="a">
               <AccordionHeader>
@@ -144,7 +144,7 @@ export default function ConfirmInfor() {
           </Accordion>
         </Card>
 
-        <Card className="p-4 mx-4 mb-4">
+        <Card className="p-4 mx-4 mb-4 bg-gray-100">
           <Accordion size="md" variant="unfilled" type="single">
             <AccordionItem value="a">
               <AccordionHeader>
@@ -176,6 +176,12 @@ export default function ConfirmInfor() {
             onPress={() => router.push("/account/home")}
           >
             <ButtonText>Trở về trang chủ</ButtonText>
+          </Button>
+          <Button
+            className="w-full bg-red-500 h-12 mt-4"
+            onPress={() => router.push("/registration_form/registration_form")}
+          >
+            <ButtonText>Chỉnh sửa phiếu đăng ký</ButtonText>
           </Button>
         </View>
       </ScrollView>
