@@ -57,9 +57,9 @@ export default function AccountLayout() {
       <Tabs.Screen
         name="setting"
         options={{
-          tabBarLabel: "Cài đặt",
+          tabBarLabel: "Tài khoản",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="cog" color={color} size={26} />
+            <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
           headerShown: false,
         }}
@@ -70,7 +70,7 @@ export default function AccountLayout() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    height: 60,
+    height: 80,
     backgroundColor: "white",
     borderTopColor: "#ddd",
   },
