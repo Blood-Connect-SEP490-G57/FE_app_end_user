@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/accordion";
 import { ChevronUpIcon } from "@/components/ui/icon";
 import { Button, ButtonText } from "@/components/ui/button";
+import { router } from "expo-router";
 
 export default function Schedule() {
   return (
@@ -89,6 +90,18 @@ export default function Schedule() {
               className="w-full bg-red-500"
             >
               <ButtonText>Hủy lịch hẹn</ButtonText>
+            </Button>
+            <Button
+              size="lg"
+              variant="solid"
+              action="primary"
+              className="w-full bg-red-500 mt-2"
+              onPress={() => {
+                // Xử lý khi nhấn nút "Xem chi tiết"
+              router.push("/registration_form/registration_form");
+              }}
+            >
+              <ButtonText>Chỉnh sửa thông tin</ButtonText>
             </Button>
           </View>
         </Card>
