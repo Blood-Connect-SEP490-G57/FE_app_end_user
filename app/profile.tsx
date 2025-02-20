@@ -6,13 +6,15 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { Text } from "@/components/ui/text";
 import { Image } from "@/components/ui/image";
-import { Card } from "@/components/ui/card";
-import { Divider } from "@/components/ui/divider";
 import BackButton from "@/components/ui/backbtn";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 
 export default function ProfileScreen() {
   const router = useRouter();
@@ -81,6 +83,26 @@ export default function ProfileScreen() {
   };
 
   const InfoItem = () => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [contactInfo, setContactInfo] = useState({
+      address: "123 Đường ABC, Quận 1, TP.HCM",
+      email: "nguyenvana@gmail.com",
+      phone: "0987654321",
+      occupation: "Công an",
+    });
+
+    const handleSave = () => {
+      // Here you can add API call to save the data
+      setIsEditing(false);
+    };
+
+    const handleChange = (field: keyof typeof contactInfo, value: string) => {
+      setContactInfo((prev) => ({
+        ...prev,
+        [field]: value,
+      }));
+    };
+
     return (
       <View className="mx-4 mb-6">
         {/* Banner Header */}
@@ -88,6 +110,13 @@ export default function ProfileScreen() {
           <Text className="text-xl font-semibold text-white">
             Thông tin liên hệ
           </Text>
+          <TouchableOpacity
+            onPress={() => (isEditing ? handleSave() : setIsEditing(true))}
+          >
+            <Text className="text-base font-semibold text-white">
+              {isEditing ? "Lưu" : "Chỉnh sửa"}
+            </Text>
+          </TouchableOpacity>
         </View>
 
         {/* Content Group */}
@@ -95,23 +124,64 @@ export default function ProfileScreen() {
           <View className="space-y-3">
             <View style={styles.infoRow}>
               <Text className="text-base text-gray-600">Địa chỉ:</Text>
-              <Text className="text-base font-semibold">
-                123 Đường ABC, Quận 1, TP.HCM
-              </Text>
+              {isEditing ? (
+                <TextInput
+                  value={contactInfo.address}
+                  onChangeText={(value) => handleChange("address", value)}
+                  className="text-base font-semibold flex-1 text-right"
+                  selection={{ start: contactInfo.address.length }}
+                />
+              ) : (
+                <Text className="text-base font-semibold">
+                  {contactInfo.address}
+                </Text>
+              )}
             </View>
             <View style={styles.infoRow}>
               <Text className="text-base text-gray-600">Email:</Text>
-              <Text className="text-base font-semibold">
-                nguyenvana@gmail.com
-              </Text>
+              {isEditing ? (
+                <TextInput
+                  value={contactInfo.email}
+                  onChangeText={(value) => handleChange("email", value)}
+                  className="text-base font-semibold flex-1 text-right"
+                  keyboardType="email-address"
+                  selection={{ start: contactInfo.email.length }}
+                />
+              ) : (
+                <Text className="text-base font-semibold">
+                  {contactInfo.email}
+                </Text>
+              )}
             </View>
             <View style={styles.infoRow}>
               <Text className="text-base text-gray-600">Số điện thoại:</Text>
-              <Text className="text-base font-semibold">0987654321</Text>
+              {isEditing ? (
+                <TextInput
+                  value={contactInfo.phone}
+                  onChangeText={(value) => handleChange("phone", value)}
+                  className="text-base font-semibold flex-1 text-right"
+                  keyboardType="phone-pad"
+                />
+              ) : (
+                <Text className="text-base font-semibold">
+                  {contactInfo.phone}
+                </Text>
+              )}
             </View>
             <View style={styles.infoRow}>
               <Text className="text-base text-gray-600">Nghề nghiệp:</Text>
-              <Text className="text-base font-semibold">Công an</Text>
+              {isEditing ? (
+                <TextInput
+                  value={contactInfo.occupation}
+                  onChangeText={(value) => handleChange("occupation", value)}
+                  className="text-base font-semibold flex-1 text-right pb-2"
+                  selection={{ start: contactInfo.occupation.length }}
+                />
+              ) : (
+                <Text className="text-base font-semibold">
+                  {contactInfo.occupation}
+                </Text>
+              )}
             </View>
           </View>
         </View>
@@ -121,19 +191,25 @@ export default function ProfileScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      {/* Header với nút Back */}
-      <View className="p-4 flex-row items-center">
-        <BackButton />
-        <Heading className="ml-4 text-lg font-semibold">
-          Thông tin cá nhân
-        </Heading>
-      </View>
-      {/* Nội dung */}
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {imageItem()}
-        {PersonalInfoCard()}
-        {InfoItem()}
-      </ScrollView>
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+      >
+        {/* Header với nút Back */}
+        <View className="p-4 flex-row items-center">
+          <BackButton />
+          <Heading className="ml-4 text-lg font-semibold">
+            Thông tin cá nhân
+          </Heading>
+        </View>
+        {/* Nội dung */}
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          {imageItem()}
+          {PersonalInfoCard()}
+          {InfoItem()}
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
